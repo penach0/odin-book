@@ -11,6 +11,14 @@
   </head>
 
   <body>
+    <div>
+      <% if flash.any? %>
+        <% flash.each do |_type, message| %>
+          <p><%= message %></p>
+        <% end %>
+      <% end %>
+    </div>
+
     <nav>
       <h1><%= link_to "Odinbook", root_path %></h1>
 

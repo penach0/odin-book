@@ -8,6 +8,8 @@
                 <strong>You are friend</strong>
             <% elsif current_user.request_sent?(user) %>
                 <strong>Request Sent</strong>
+            <% elsif current_user.request_received?(user) %>
+                <span><%= link_to "Accept", '#' %> <%= link_to "Decline", '#' %></span>
             <% else %>
                 <%= link_to "Send Request", friendships_create_path(friend_id: user.id) %>
             <% end %>

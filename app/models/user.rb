@@ -21,6 +21,10 @@ class User < ApplicationRecord
     sent_requests.include?(other)
   end
 
+  def request_received?(other)
+    received_requests.include?(other)
+  end
+
   def friend?(other)
     active_friends.include?(other)
   end

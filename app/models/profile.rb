@@ -10,4 +10,8 @@ class Profile < ApplicationRecord
   def age
     ((Time.zone.now - date_of_birth.to_time) / 1.year.seconds).floor
   end
+
+  def incomplete?
+    attributes.values.any?(&:nil?)
+  end
 end

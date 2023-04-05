@@ -4,7 +4,7 @@
     <% @users.each do |user| %>
         <li>
             <%= user.email %>
-            <%= link_to "Send Request", "#" %>
+            <%= link_to "Send Request", friendships_create_path(friend_id: user.id) %>
         </li>
     <% end %>
 </ul>

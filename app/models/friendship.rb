@@ -5,4 +5,5 @@ class Friendship < ApplicationRecord
   enum :status, [:pending, :accepted, :rejected]
 
   scope :accepted, -> { where(status: :accepted) }
+  scope :pending, -> { where(status: :pending) }
 end

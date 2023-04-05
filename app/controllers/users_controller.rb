@@ -1,8 +1,10 @@
 class UsersController < ApplicationController
   def index
-    @users = User.all_except(current_user)
+    @users = User.all_except(current_user).includes(:profile)
   end
 
   def show
+    @user = User.find(params[:id])
+    @profile = @user.profile
   end
 end

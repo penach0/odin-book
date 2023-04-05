@@ -16,4 +16,6 @@
     <%= f.submit %>
 <% end %>
 
-<%= link_to "Edit later", users_path %>
+<% if @profile.required_info? %>
+    <%= link_to "Edit later", users_path %>
+<% end %>

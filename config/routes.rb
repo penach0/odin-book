@@ -5,8 +5,9 @@ Rails.application.routes.draw do
   devise_scope :user do
     root "users#index"
   end
+
   resources :users, only: [:index, :show] do
     resources :friendships, only: [:create, :update]
-    resource :profile, only: [:edit, :update]
+    resource :profile, only: [:show, :edit, :update]
   end
 end

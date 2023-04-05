@@ -11,6 +11,8 @@ class User < ApplicationRecord
   has_many :sent_requests, -> { Friendship.pending }, through: :friendships, source: :friend
   has_many :received_requests, -> { Friendship.pending }, through: :inverse_friendships, source: :user
 
+  has_one :profile, dependent: :destroy
+
   scope :all_except, ->(user) { where.not(id: user.id) }
 
   def active_friends

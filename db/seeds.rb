@@ -13,5 +13,6 @@ EMAILS = [
 
 User.delete_all
 Friendship.delete_all
+Profile.delete_all
 
 EMAILS.each { |email| User.create(email: email, password: "123456") }

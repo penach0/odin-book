@@ -1,18 +1,11 @@
 class ProfilesController < ApplicationController
-  def show
-    @user = User.find(params[:user_id])
-    @profile = @user.profile
-  end
+  before_action :set_variables
 
-  def edit
-    @user = User.find(params[:user_id])
-    @profile = @user.profile || @user.build_profile
-  end
+  def show; end
+
+  def edit; end
 
   def update
-    @user = User.find(params[:user_id])
-    @profile = @user.profile || @user.create_profile
-
     if @profile.update(profile_params)
       redirect_to [@user, @profile]
     else
@@ -23,5 +16,10 @@ class ProfilesController < ApplicationController
   private
     def profile_params
       params.require(:profile).permit(:first_name, :last_name, :date_of_birth, :bio)
+    end
+
+    def set_variables
+      @user = User.find(params[:user_id])
+      @profile = @user.profile
     end
 end

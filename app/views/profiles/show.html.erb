@@ -2,8 +2,12 @@
 
 <ul>
     <li><strong>Full Name: </strong><%= @profile.full_name %></li>
-    <li><strong>Age: <%= @profile.age %></strong></li>
-    <li><strong>Bio: </strong>
-        <br><%= @profile.bio %>
-    </li>
+    <% if @profile.age %>
+        <li><strong>Age: <%= @profile.age %></strong></li>
+    <% end %>
+    <% unless @profile.bio.blank? %>
+        <li><strong>Bio: </strong>
+            <br><%= @profile.bio %>
+        </li>      
+    <% end %>
 </ul>

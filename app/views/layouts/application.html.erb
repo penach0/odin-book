@@ -12,12 +12,13 @@
 
   <body>
     <nav>
-      <h1>Odinbook</h1>
+      <h1><%= link_to "Odinbook", root_path %></h1>
       <% if user_signed_in? %>
         <p>Signed in as <%= current_user.email %>. <%= link_to "Sign Out", destroy_user_session_path, data: { turbo_method: :delete,
-                                                                                                            turbo_confirm: "Are you sure?"}  %> </p>
+                                                                                                              turbo_confirm: "Are you sure?"} %>
+        </p>
       <% else %>
-        <p><%= link_to "Sign In", new_user_session_path %> or <%= link_to "Sign Up", new_user_registration_path%></p>
+        <p><%= link_to "Sign In", new_user_session_path %> or <%= link_to "Sign Up", new_user_registration_path %></p>
       <% end %>
 
     </nav>

@@ -7,7 +7,10 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
 
   def after_sign_in_path_for(user)
-    return edit_user_profile_path(user) if user.profile.incomplete?
+    if user.profile.incomplete?
+      flash[:notice] = "Your profile is incomplete, give people the chance to know you better"
+      return edit_user_profile_path(user)
+    end
 
     super(user)
   end

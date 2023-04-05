@@ -4,7 +4,13 @@
     <% @users.each do |user| %>
         <li>
             <%= user.email %>
-            <%= link_to "Send Request", friendships_create_path(friend_id: user.id) %>
+            <% if current_user.friend?(user) %>
+                <strong>You are friend</strong>
+            <% elsif current_user.request_sent?(user) %>
+                <strong>Request Sent</strong>
+            <% else %>
+                <%= link_to "Send Request", friendships_create_path(friend_id: user.id) %>
+            <% end %>
         </li>
     <% end %>
 </ul>

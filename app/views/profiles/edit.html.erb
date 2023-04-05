@@ -1,14 +1,14 @@
 <h1>Edit Your Profile</h1>
 
-<%= form_with model: @profile do |f| %>
+<%= form_with model: [@user, @profile] do |f| %>
     <%= f.label :first_name %>
-    <%= f.text_input :first_name %>
+    <%= f.text_field :first_name %>
 
     <%= f.label :last_name %>
-    <%= f.text_input :last_name %>
+    <%= f.text_field :last_name %>
 
     <%= f.label :date_of_birth %>
-    <%= f.date_input :date_of_birth %>
+    <%= f.date_field :date_of_birth %>
 
     <%= f.label :bio %>
     <%= f.text_area :bio %>

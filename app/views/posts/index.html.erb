@@ -3,3 +3,7 @@
 <% @posts.each do |post| %>
     <%= render "post", post: post %>
 <% end %>
+
+<br>
+
+<%= link_to "New Post", new_user_post_path(current_user) %>

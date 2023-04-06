@@ -1,6 +1,8 @@
 <h1>Edit Your Profile</h1>
 
 <%= form_with model: [@user, @profile] do |f| %>
+    <%= render "shared/form_errors", model: @profile %>
+
     <%= f.label :first_name %>
     <%= f.text_field :first_name %>
 

@@ -1,4 +1,4 @@
-<%= turbo_frame_tag "post_#{post.id}" do %>
+<%= turbo_frame_tag post do %>
     <div class="post">
         <p><%= link_to post.body, post_path(post), data: { turbo_frame: "_top" } %></p>
         <strong>By: </strong><%= post.creator.profile.full_name %>

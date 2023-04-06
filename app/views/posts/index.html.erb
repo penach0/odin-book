@@ -1,9 +1,11 @@
-<h1>Posts</h1>
+<%= stylesheet_link_tag "posts" %>
 
-<% @posts.each do |post| %>
-    <%= render "post", post: post %>
-<% end %>
+<div class="feed">
+    <h1>Posts</h1>
 
-<br>
+    <%= link_to "New Post", new_user_post_path(current_user) %>
 
-<%= link_to "New Post", new_user_post_path(current_user) %>
+    <% @posts.each do |post| %>
+        <%= render "post", post: post %>
+    <% end %>
+</div>

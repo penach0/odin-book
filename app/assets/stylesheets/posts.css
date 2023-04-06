@@ -1,5 +1,12 @@
+.feed {
+    width: 1000px;
+    margin-inline: auto;
+
+    display: grid;
+    row-gap: 20px;
+}
+
 .post {
     border: 1px solid black;
     padding: 10px;
-    margin-bottom: 10px;
 }

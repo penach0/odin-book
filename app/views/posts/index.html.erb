@@ -1,0 +1,6 @@
+<h1>Posts</h1>
+
+<% @posts.each do |post| %>
+  <p><%= post.body %></p>
+  <strong>By: </strong><%= post.creator.profile.full_name %>
+<% end %>

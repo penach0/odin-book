@@ -1,4 +1,4 @@
-<%= turbo_frame_tag "new_post" do %>
+<%= turbo_frame_tag @post do %>
     <h2>New Post</h2>
 
     <%= render "form", user: @user, post: @post %>

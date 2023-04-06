@@ -3,10 +3,8 @@
 <div class="feed">
     <h1>Posts</h1>
 
-    <%#= turbo_frame_tag id="new_post", src: new_user_post_path(current_user) %>
-    <%= turbo_frame_tag "new_post" do %>
-        <%= link_to "New Post", new_user_post_path(current_user) %>
-    <% end %>
+    <%= link_to "New Post", new_user_post_path(current_user), data: { turbo_frame: dom_id(Post.new) } %>
+    <%= turbo_frame_tag Post.new %>
 
     <%= render @posts %>
 </div>

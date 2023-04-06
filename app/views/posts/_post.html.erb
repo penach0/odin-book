@@ -1,2 +1,5 @@
   <p><%= post.body %></p>
   <strong>By: </strong><%= post.creator.profile.full_name %>
+
+  <%= link_to "Edit", edit_post_path(post) %>
+  

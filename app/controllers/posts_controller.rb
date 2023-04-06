@@ -44,7 +44,11 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
 
     @post.destroy
-    redirect_to user_posts_path(@user)
+
+    respond_to do |format|
+      format.html { redirect_to user_posts_path(@user) }
+      format.turbo_stream
+    end
   end
 
   private

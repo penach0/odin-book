@@ -12,7 +12,7 @@ class User < ApplicationRecord
   has_many :received_requests, -> { Friendship.pending }, through: :inverse_friendships, source: :user
 
   has_one :profile, dependent: :destroy
-  has_many :created_posts, foreign_key: :creator_id, class_name: "Post"
+  has_many :created_posts, foreign_key: :creator_id, class_name: "Post", dependent: :destroy
 
   scope :all_except, ->(user) { where.not(id: user.id) }
 

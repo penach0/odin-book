@@ -7,7 +7,8 @@ Rails.application.routes.draw do
   end
 
   resources :users, only: [:index, :show] do
-    resources :friendships, only: [:create, :update]
     resource :profile, only: [:show, :edit, :update]
+    resources :friendships, only: [:create, :update]
+    resources :posts, shallow: true
   end
 end

@@ -1,5 +1,6 @@
 class ProfilesController < ApplicationController
   before_action :set_variables
+  before_action -> { authorize_user(@profile) }, only: [:edit, :update]
 
   def show; end
 

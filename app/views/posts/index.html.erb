@@ -3,9 +3,9 @@
 <div class="feed">
     <h1>Posts</h1>
 
-    <%= link_to "New Post", new_user_post_path(current_user) %>
-
-    <% @posts.each do |post| %>
-        <%= render "post", post: post %>
+    <%#= turbo_frame_tag id="new_post", src: new_user_post_path(current_user) %>
+    <%= turbo_frame_tag "new_post" do %>
+        <%= link_to "New Post", new_user_post_path(current_user) %>
     <% end %>
+    <%= render @posts %>
 </div>

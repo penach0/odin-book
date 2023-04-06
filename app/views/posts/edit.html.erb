@@ -1,5 +1,5 @@
-<%= turbo_frame_tag @post do %>
-    <h1>Edit Post</h1>
+<h2>Edit Post</h2>
 
+<%= turbo_frame_tag @post do %>
     <%= render "form", user: nil, post: @post %>
 <% end %>

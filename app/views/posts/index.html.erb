@@ -4,7 +4,10 @@
     <h1>Posts</h1>
 
     <%= link_to "New Post", new_user_post_path(current_user), data: { turbo_frame: dom_id(Post.new) } %>
+    
     <%= turbo_frame_tag Post.new %>
 
-    <%= render @posts %>
+    <%= turbo_frame_tag "posts" do %>
+        <%= render @posts %>
+    <% end %>
 </div>

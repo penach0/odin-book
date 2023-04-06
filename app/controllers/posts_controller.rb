@@ -17,7 +17,10 @@ class PostsController < ApplicationController
     @post = @user.created_posts.create(post_params)
 
     if @post.save
-      redirect_to @post
+      respond_to do |format|
+        format.html { redirect_to @post }
+        format.turbo_stream
+      end
     else
       render :new, status: :unprocessable_entity
     end

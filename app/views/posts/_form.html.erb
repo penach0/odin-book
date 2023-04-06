@@ -1,6 +1,6 @@
 <div class="post">
-    <%= form_with model: model do |f| %>
-        <%= render "shared/form_errors", model: model %>
+    <%= form_with model: [user, post] do |f| %>
+        <%= render "shared/form_errors", model: post %>
 
         <%= f.text_area :body %>
         <%= f.submit %>

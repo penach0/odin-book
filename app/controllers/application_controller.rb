@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   private
 
     def authorize_user(resource)
-      unless current_user.id == resource.user_id
+      unless current_user.owns?(resource)
         flash[:error] = "You are not authorized to do that"
         redirect_back(fallback_location: root_path)
       end

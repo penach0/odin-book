@@ -12,4 +12,6 @@
     <% end %>
 </ul>
 
-<%= link_to "Edit Profile", edit_user_profile_path %>
+<% if current_user.owns?(@profile) %>
+    <%= link_to "Edit Profile", edit_user_profile_path %>
+<% end %>

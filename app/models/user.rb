@@ -30,4 +30,8 @@ class User < ApplicationRecord
   def friend?(other)
     active_friends.include?(other)
   end
+
+  def owns?(content)
+    id == content.user_id
+  end
 end

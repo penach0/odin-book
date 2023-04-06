@@ -33,6 +33,6 @@ class User < ApplicationRecord
   end
 
   def owns?(content)
-    id == content.user_id
+    content.owned_by?(self)
   end
 end

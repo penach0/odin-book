@@ -5,7 +5,7 @@
         <li>
             <%= link_to user.profile.full_name, user_profile_path(user) %>
             <% if current_user.friend?(user) %>
-                <strong>You are friend</strong>
+                <strong>You are friends</strong>
             <% elsif current_user.request_sent?(user) %>
                 <strong>Request Sent</strong>
             <% elsif current_user.request_received?(user) %>

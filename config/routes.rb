@@ -8,7 +8,8 @@ Rails.application.routes.draw do
 
   resources :users, only: [:index, :show] do
     resource :profile, only: [:show, :edit, :update]
-    resources :friendships, only: [:create, :update]
     resources :posts, shallow: true
   end
+
+  resources :friendships, only: [:create, :update]
 end

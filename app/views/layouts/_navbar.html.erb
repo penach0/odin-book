@@ -7,7 +7,7 @@
         <% if current_user.received_requests.any? %>      
             <ul>
                 <% current_user.received_requests.each do |request| %>
-                <li><%= request.email  %><%= render "request_response" %></li>
+                <li><%= request.user.profile.full_name  %><%= render "shared/request_response" %></li>
                 <% end %>
             </ul>
         <% end %>

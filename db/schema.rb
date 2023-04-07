@@ -20,8 +20,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_06_073717) do
     t.integer "status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index "GREATEST(friend_id, user_id, LEAST(friend_id, user_id))", name: "index_friendships_on_interchangeable_friend_id_and_user_id", unique: true
-    t.index "GREATEST(user_id, friend_id, LEAST(user_id, friend_id))", name: "index_friendships_on_interchangeable_and_user_id_friend_id", unique: true
+    t.index "GREATEST(friend_id, user_id), LEAST(friend_id, user_id)", name: "index_friendships_on_interchangeable_friend_id_and_user_id", unique: true
+    t.index "GREATEST(user_id, friend_id), LEAST(user_id, friend_id)", name: "index_friendships_on_interchangeable_and_user_id_friend_id", unique: true
     t.index ["friend_id"], name: "index_friendships_on_friend_id"
     t.index ["user_id"], name: "index_friendships_on_user_id"
   end

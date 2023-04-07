@@ -6,10 +6,10 @@ class AddInterchangeableUniqueIndexToFriendships < ActiveRecord::Migration[7.0]
 
         connection.execute(%(
           create unique index index_friendships_on_interchangeable_and_user_id_friend_id
-          on friendships(greatest(user_id, friend_id, least(user_id, friend_id)));
+          on friendships(greatest(user_id, friend_id), least(user_id, friend_id));
 
           create unique index index_friendships_on_interchangeable_friend_id_and_user_id
-          on friendships(greatest(friend_id, user_id, least(friend_id, user_id)));
+          on friendships(greatest(friend_id, user_id), least(friend_id, user_id));
         ))
       end
 

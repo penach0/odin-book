@@ -9,7 +9,7 @@ class User < ApplicationRecord
   has_many :friends, -> { Friendship.accepted }, through: :friendships
   has_many :inverse_friends, -> { Friendship.accepted }, through: :inverse_friendships, source: :user
   has_many :sent_requests, -> { Friendship.pending }, through: :friendships, source: :friend
-  has_many :received_requests, -> { Friendship.pending }, through: :inverse_friendships, source: :user
+  # has_many :received_requests, -> { Friendship.pending }, through: :inverse_friendships, source: :user
 
   has_one :profile, dependent: :destroy
   has_many :created_posts, foreign_key: :creator_id, class_name: "Post", dependent: :destroy
@@ -20,12 +20,16 @@ class User < ApplicationRecord
     friends + inverse_friends
   end
 
+  def received_requests
+    inverse_friendships.pending
+  end
+
   def request_sent?(other)
     sent_requests.include?(other)
   end
 
   def request_received?(other)
-    received_requests.include?(other)
+    received_requests.where(user_id: other.id).exists?
   end
 
   def friend?(other)

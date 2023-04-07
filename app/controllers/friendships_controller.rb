@@ -11,12 +11,8 @@ class FriendshipsController < ApplicationController
 
   def update
     friendship = Friendship.find(params[:id])
-    case params[:response]
-    when 'accepted'
-      friendship.accepted!
-    when 'rejected'
-      friendship.rejected!
-    end
+
+    friendship.send("#{params[:response]}!")
 
     if friendship.save
       redirect_back(fallback_location: root_path)

@@ -3,15 +3,16 @@
 <nav>
     <h1><%= link_to "Odinbook", root_path %></h1>
 
-    <% if current_user.received_requests.any? %>      
-        <ul>
-            <% current_user.received_requests.each do |request| %>
-            <li><%= request.email  %><%= render "request_response" %></li>
-            <% end %>
-        </ul>
-    <% end %>
-
     <% if user_signed_in? %>
+        <% if current_user.received_requests.any? %>      
+            <ul>
+                <% current_user.received_requests.each do |request| %>
+                <li><%= request.email  %><%= render "request_response" %></li>
+                <% end %>
+            </ul>
+        <% end %>
+
+    
         <p>Signed in as <%= link_to current_user.profile.full_name, user_profile_path(current_user) %>.
         <%= link_to "Sign Out", destroy_user_session_path, data: { turbo_method: :delete,
                                                                    turbo_confirm: "Are you sure?"} %>

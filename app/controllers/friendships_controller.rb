@@ -10,11 +10,11 @@ class FriendshipsController < ApplicationController
   end
 
   def update
-    friendship = Friendship.find(user_id: params[:user_id], friend_id: current_user.id)
-    case params[:action]
-    when 'accept'
+    friendship = Friendship.find(params[:id])
+    case params[:response]
+    when 'accepted'
       friendship.accepted!
-    when 'reject'
+    when 'rejected'
       friendship.rejected!
     end
 

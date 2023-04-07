@@ -12,12 +12,15 @@ class FriendshipsController < ApplicationController
   def update
     friendship = Friendship.find(params[:id])
 
-    friendship.send("#{params[:response]}!")
-
-    if friendship.save
+    if friendship.update(friendship_params)
       redirect_back(fallback_location: root_path)
     else
       render '/', status: :unprocessable_entity
     end
   end
+
+  private
+    def friendship_params
+      params.require(:friendship).permit(:user_id, :friend_id, :status)
+    end
 end

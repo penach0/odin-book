@@ -1,4 +1,4 @@
 <span>
-    <%= button_to "Accept", friendship_path(friendship), method: :patch, params: { response: "accepted"} %>
-    <%= button_to "Decline", friendship_path(friendship), method: :patch, params: { response: "rejected"} %> 
+    <%= button_to "Accept", friendship_path(friendship), method: :patch, params: { friendship: { status: "accepted" } } %>
+    <%= button_to "Decline", friendship_path(friendship), method: :patch, params: { friendship: { status: "rejected" }} %> 
 </span>

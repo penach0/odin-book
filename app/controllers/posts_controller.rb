@@ -1,21 +1,19 @@
 class PostsController < ApplicationController
-  before_action -> { authorize_user(@post) }, only: [:edit, :update, :destroy]
+  before_action :set_user, except: [:index, :show]
+  before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action -> { authorize_user(Post.find(params[:id])) }, only: [:edit, :update, :destroy]
 
   def index
     @posts = Post.ordered
   end
 
-  def show
-    @post = Post.find(params[:id])
-  end
+  def show; end
 
   def new
-    @user = current_user
     @post = @user.created_posts.build
   end
 
   def create
-    @user = current_user
     @post = @user.created_posts.create(post_params)
 
     if @post.save
@@ -28,15 +26,9 @@ class PostsController < ApplicationController
     end
   end
 
-  def edit
-    @user = current_user
-    @post = Post.find(params[:id])
-  end
+  def edit; end
 
   def update
-    @user = current_user
-    @post = Post.find(params[:id])
-
     if @post.update(post_params)
       redirect_to @post
     else
@@ -45,9 +37,6 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    @user = current_user
-    @post = Post.find(params[:id])
-
     @post.destroy
 
     respond_to do |format|
@@ -59,5 +48,13 @@ class PostsController < ApplicationController
   private
     def post_params
       params.require(:post).permit(:body)
+    end
+
+    def set_user
+      @user = current_user
+    end
+
+    def set_post
+      @post = Post.find(params[:id])
     end
 end

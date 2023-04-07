@@ -6,4 +6,8 @@ class Friendship < ApplicationRecord
 
   scope :accepted, -> { where(status: :accepted) }
   scope :pending, -> { where(status: :pending) }
+
+  def owned_by?(user)
+    friend_id == user.id
+  end
 end

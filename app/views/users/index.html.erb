@@ -9,7 +9,8 @@
             <% elsif current_user.request_sent?(user) %>
                 <strong>Request Sent</strong>
             <% elsif current_user.request_received?(user) %>
-                <%= render "shared/request_response" %>
+                <%= render "shared/request_response",
+                    friendship: Friendship.find_by(user_id: user.id, friend_id: current_user.id) %>
             <% else %>
                 <%= link_to "Send Request", friendships_create_path(friend_id: user.id) %>
             <% end %>

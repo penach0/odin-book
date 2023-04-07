@@ -4,8 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :friendships
-  has_many :inverse_friendships, foreign_key: :friend_id, class_name: "Friendship"
+  has_many :friendships, dependent: :destroy
+  has_many :inverse_friendships, foreign_key: :friend_id, class_name: "Friendship", dependent: :destroy
   has_many :friends, -> { Friendship.accepted }, through: :friendships
   has_many :inverse_friends, -> { Friendship.accepted }, through: :inverse_friendships, source: :user
   has_many :requestees, -> { Friendship.pending }, through: :friendships, source: :friend

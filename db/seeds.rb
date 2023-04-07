@@ -12,8 +12,6 @@ USERS = [
 ].freeze
 
 User.delete_all
-Friendship.delete_all
-Profile.delete_all
 
 USERS.each do |user|
   current_user = User.create(email: user[:email], password: "123456")

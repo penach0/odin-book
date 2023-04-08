@@ -9,6 +9,6 @@ class Friendship < ApplicationRecord
 
   def self.find_interchangeable(first_user, second_user)
     where(user_id: first_user, friend_id: second_user)
-      .or(where(user_id: second_user, friend_id: first_user))
+      .or(where(user_id: second_user, friend_id: first_user)).take
   end
 end

@@ -20,6 +20,13 @@ class FriendshipsController < ApplicationController
     end
   end
 
+  def destroy
+    friendship = Friendship.find(params[:id])
+    friendship.destroy
+
+    redirect_back(fallback_location: root_path)
+  end
+
   private
     def friendship_params
       params.require(:friendship).permit(:user_id, :friend_id, :status)

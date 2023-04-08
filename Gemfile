@@ -81,4 +81,4 @@ gem "devise", "~> 4.9"
 
 gem "responders", "~> 3.1"
 
-
+gem "pundit", "~> 2.3"

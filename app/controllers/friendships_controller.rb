@@ -1,6 +1,4 @@
 class FriendshipsController < ApplicationController
-  before_action :authorize_user, only: :update
-
   def create
     friendship = current_user.friendships.build(friend_id: params[:friend_id])
 
@@ -13,6 +11,7 @@ class FriendshipsController < ApplicationController
 
   def update
     friendship = Friendship.find(params[:id])
+    authorize friendship
 
     if friendship.update(friendship_params)
       redirect_back(fallback_location: root_path)

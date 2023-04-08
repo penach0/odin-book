@@ -1,4 +1,7 @@
 class FriendshipsController < ApplicationController
+  before_action :set_friendship, only: [:update, :destroy]
+  before_action -> { authorize @friendship }, only: [:update, :destroy]
+
   def create
     friendship = current_user.friendships.build(friend_id: params[:friend_id])
 
@@ -10,10 +13,7 @@ class FriendshipsController < ApplicationController
   end
 
   def update
-    friendship = Friendship.find(params[:id])
-    authorize friendship
-
-    if friendship.update(friendship_params)
+    if @friendship.update(friendship_params)
       redirect_back(fallback_location: root_path)
     else
       render '/', status: :unprocessable_entity
@@ -21,10 +21,7 @@ class FriendshipsController < ApplicationController
   end
 
   def destroy
-    friendship = Friendship.find(params[:id])
-    authorize friendship
-
-    friendship.destroy
+    @friendship.destroy
 
     redirect_back(fallback_location: root_path)
   end
@@ -32,5 +29,9 @@ class FriendshipsController < ApplicationController
   private
     def friendship_params
       params.require(:friendship).permit(:user_id, :friend_id, :status)
+    end
+
+    def set_friendship
+      @friendship = Friendship.find(params[:id])
     end
 end

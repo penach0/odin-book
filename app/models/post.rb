@@ -4,8 +4,4 @@ class Post < ApplicationRecord
   validates :body, presence: true
 
   scope :ordered, -> { order(created_at: :desc) }
-
-  def owned_by?(user)
-    creator_id == user.id
-  end
 end

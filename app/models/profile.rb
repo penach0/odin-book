@@ -20,8 +20,4 @@ class Profile < ApplicationRecord
   def required_info?
     [first_name, last_name].none?(&:blank?)
   end
-
-  def owned_by?(user)
-    user_id == user.id
-  end
 end

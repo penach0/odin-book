@@ -31,8 +31,4 @@ class User < ApplicationRecord
   def friend?(other)
     active_friends.include?(other)
   end
-
-  def owns?(content)
-    content.owned_by?(self)
-  end
 end

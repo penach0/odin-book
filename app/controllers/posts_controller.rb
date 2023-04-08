@@ -1,10 +1,10 @@
 class PostsController < ApplicationController
   before_action :set_user, except: [:index, :show]
   before_action :set_post, only: [:show, :edit, :update, :destroy]
-  before_action -> { authorize_user(Post.find(params[:id])) }, only: [:edit, :update, :destroy]
+  # before_action -> { authorize_user(Post.find(params[:id])) }, only: [:edit, :update, :destroy]
 
   def index
-    @posts = Post.ordered
+    @posts = Post.includes(:creator).ordered
   end
 
   def show; end
@@ -29,6 +29,7 @@ class PostsController < ApplicationController
   def edit; end
 
   def update
+    authorize @post
     if @post.update(post_params)
       redirect_to @post
     else

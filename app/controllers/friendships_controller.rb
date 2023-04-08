@@ -22,6 +22,8 @@ class FriendshipsController < ApplicationController
 
   def destroy
     friendship = Friendship.find(params[:id])
+    authorize friendship
+
     friendship.destroy
 
     redirect_back(fallback_location: root_path)

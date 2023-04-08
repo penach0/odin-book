@@ -9,4 +9,8 @@ class FriendshipPolicy < ApplicationPolicy
   def update?
     user.id == record.friend_id
   end
+
+  def destroy?
+    user.id == record.friend_id || user.id == record.user_id
+  end
 end

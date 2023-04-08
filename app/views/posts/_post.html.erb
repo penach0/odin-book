@@ -3,7 +3,7 @@
         <p><%= link_to post.body, post_path(post), data: { turbo_frame: "_top" } %></p>
         <strong>By: </strong><%= post.creator.profile.full_name %>
 
-        <% if current_user.owns?(post) %>
+        <% if policy(post).update? %>
             <div class="post__actions">
                 <%= link_to "Edit", edit_post_path(post) %>
                 <%= link_to "Delete", post, data: { turbo_method: :delete,

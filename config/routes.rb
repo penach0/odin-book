@@ -11,5 +11,5 @@ Rails.application.routes.draw do
     resources :posts, shallow: true
   end
 
-  resources :friendships, only: [:create, :update]
+  resources :friendships, only: [:create, :update, :destroy]
 end

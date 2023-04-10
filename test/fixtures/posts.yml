@@ -2,8 +2,8 @@
 
 one:
   body: MyText
-  user: one
+  creator: one
 
 two:
   body: MyText
-  user: two
+  creator: two

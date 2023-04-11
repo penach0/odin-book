@@ -13,10 +13,3 @@ incomplete:
   date_of_birth: 
   bio: 
   user: two
-
-empty:
-  first_name:
-  last_name:
-  date_of_birth: 
-  bio: 
-  user: one

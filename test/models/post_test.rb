@@ -1,7 +1,17 @@
 require "test_helper"
 
 class PostTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  def setup
+    @post = posts(:one)
+  end
+
+  test "valid post" do
+    assert @post.valid?
+  end
+
+  test "invalid post" do
+    @post.body = ""
+
+    refute @post.valid?
+  end
 end

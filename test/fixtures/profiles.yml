@@ -1,15 +1,22 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  first_name: MyString
-  last_name: MyString
-  date_of_birth: 2023-04-05
-  bio: MyText
+complete:
+  first_name: John
+  last_name: Ford
+  date_of_birth: 1995-07-05
+  bio: Bio
   user: one
 
-two:
-  first_name: MyString
-  last_name: MyString
-  date_of_birth: 2023-04-05
-  bio: MyText
+incomplete:
+  first_name: Jane
+  last_name: Mercedes
+  date_of_birth: 
+  bio: 
   user: two
+
+empty:
+  first_name:
+  last_name:
+  date_of_birth: 
+  bio: 
+  user: one

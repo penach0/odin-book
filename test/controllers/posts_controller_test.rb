@@ -24,12 +24,21 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should create the post with correct data" do
+  test "should create the post with correct data via HTML" do
     assert_difference("Post.count") do
       post user_posts_url(@user), params: { post: { body: "Correct data" } }
     end
 
     assert_redirected_to post_path(Post.last)
+  end
+
+  test "should create the post with correct data via Turbo Streams" do
+    assert_difference("Post.count") do
+      post user_posts_url(@user), params: { post: { body: "Correct data" } }, as: :turbo_stream
+    end
+
+    assert_turbo_stream action: :prepend, target: "posts"
+    assert_turbo_stream action: :update, target: "new_post" 
   end
 
   test "should not save post when trying to create with incorrect data" do
@@ -66,11 +75,19 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     refute_equal body_update, @post.body
   end
 
-  test "should destroy post" do
+  test "should destroy post via HTML" do
     assert_difference("Post.count", -1) do
       delete post_url(@post)
     end
 
     assert_redirected_to user_posts_path(@user)
+  end
+
+  test "should destroy post via Turbo Stream" do
+    assert_difference("Post.count", -1) do
+      delete post_url(@post), as: :turbo_stream
+    end
+
+    assert_turbo_stream action: :remove, target: @post
   end
 end

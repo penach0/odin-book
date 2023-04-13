@@ -5,7 +5,5 @@ class Post < ApplicationRecord
 
   scope :ordered, -> { order(created_at: :desc) }
 
-  after_create_commit -> { broadcast_prepend_later_to "posts", locals: { user: Current.user } }
-  after_update_commit -> { broadcast_replace_later_to "posts" }
-  after_destroy_commit -> { broadcast_remove_to "posts" }
+  broadcasts_to ->(post) { "posts" }, inserts_by: :prepend # , locals: { user: Current.user }
 end

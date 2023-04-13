@@ -5,5 +5,5 @@ class Post < ApplicationRecord
 
   scope :ordered, -> { order(created_at: :desc) }
 
-  after_create_commit -> { broadcast_prepend_to "posts", partial: "posts/post", locals: { post: self, user: Current.user }, target: "posts" }
+  after_create_commit -> { broadcast_prepend_to "posts", locals: { user: Current.user } }
 end

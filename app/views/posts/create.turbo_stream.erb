@@ -1,2 +1,2 @@
-<%= turbo_stream.prepend "posts", @post %>
+<%= turbo_stream.prepend "posts", @post, user: Current.user %>
 <%= turbo_stream.update Post.new, "" %>

@@ -9,6 +9,6 @@
     <%= turbo_frame_tag Post.new %>
 
     <%= turbo_frame_tag "posts" do %>
-        <%= render @posts %>
+        <%= render @posts, user: current_user %>
     <% end %>
 </div>

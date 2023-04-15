@@ -3,7 +3,7 @@
 <%= turbo_stream_from "posts" %>
 
 <% if user_signed_in? %>
-<%#= turbo_stream_from current_user&.to_gid_param %>
+    <%= turbo_stream_from current_user&.to_gid_param %>
 <% end %>
 
 <div class="feed">
@@ -12,6 +12,6 @@
     <%= turbo_frame_tag id="new_post", src: new_user_post_path(current_user) %>
 
     <%= turbo_frame_tag "posts" do %>
-        <%= render @posts, user: current_user, delete_behaviour: @delete_behaviour %>
+        <%= render @posts, user: current_user %>
     <% end %>
 </div>

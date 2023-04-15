@@ -5,21 +5,9 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.includes(creator: :profile).ordered
-
-    @delete_behaviour = {
-      data: { turbo_confirm: "Are you sure?" }
-    }
   end
 
-  def show
-    @delete_behaviour = {
-      data: {
-        turbo: false,
-        controller: "confirmation",
-        action: "submit->confirmation#confirm",
-      }
-    }
-  end
+  def show; end
 
   def new
     @post = @user.created_posts.build

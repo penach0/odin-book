@@ -7,9 +7,7 @@
 
         <% if defined?(user) %>
             <% if Pundit.policy(user, post).update? %>
-                <%# if defined?(page) %>
-                    <%= render "posts/creator_controls", post: post, show_page: local_assigns[:show_page] %>
-                <%# end %>
+                <%= render "posts/creator_controls", post: post, show_page: local_assigns[:show_page] %>
             <% end %>
         <% end %>
     </div>

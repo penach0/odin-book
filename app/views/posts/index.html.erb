@@ -9,7 +9,9 @@
 <div class="feed">
     <h1>Posts</h1>
 
-    <%= turbo_frame_tag id="new_post", src: new_user_post_path(current_user) %>
+    <%= turbo_frame_tag id="new_post" do %>
+        <%= render "form", post: Post.new, user: current_user %>
+    <% end %>
 
     <%= turbo_frame_tag "posts" do %>
         <%= render @posts, user: current_user %>

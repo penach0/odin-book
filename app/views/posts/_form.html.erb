@@ -2,9 +2,9 @@
     <%= form_with model: [user, post] do |f| %>
         <%= render "shared/form_errors", model: post %>
 
-        <%= f.text_area :body %>
+        <%= f.text_area :body, autocomplete: "off" %>
         <%= f.submit %>
-        
+
         <% unless user %>
             <%= link_to "Cancel", :back %>
         <% end %>

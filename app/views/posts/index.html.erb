@@ -12,6 +12,6 @@
     <%= turbo_frame_tag id="new_post", src: new_user_post_path(current_user) %>
 
     <%= turbo_frame_tag "posts" do %>
-        <%= render @posts, user: current_user %>
+        <%= render @posts, user: current_user, delete_behaviour: @delete_behaviour %>
     <% end %>
 </div>

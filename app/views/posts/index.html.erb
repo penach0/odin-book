@@ -3,7 +3,7 @@
 <%= turbo_stream_from "posts" %>
 
 <% if user_signed_in? %>
-    <%= turbo_stream_from current_user&.to_gid_param %>
+    <%= turbo_stream_from [current_user, "posts"] %>
 <% end %>
 
 <div class="feed">

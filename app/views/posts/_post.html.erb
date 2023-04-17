@@ -3,12 +3,10 @@
         <p><%= link_to post.body, post_path(post), data: { turbo_frame: "_top" } %></p>
         <strong>By: </strong><%= post.creator.profile.full_name %>
 
-        <%= turbo_frame_tag(["creator_controls", post.id]) %>
-
-        <% if defined?(user) %>
-            <% if Pundit.policy(user, post).update? %>
-                <%= render "posts/creator_controls", post: post, show_page: local_assigns[:show_page] %>
-            <% end %>
+        <% if defined?(user) && Pundit.policy(user, post).update? %>
+            <%= render "posts/creator_controls", post: post, show_page: local_assigns[:show_page] %>
         <% end %>
+
+        <div id="creator_controls_<%= post.id %>" ></div>
     </div>
 <% end %>

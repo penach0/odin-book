@@ -85,3 +85,5 @@ gem "omniauth-rails_csrf_protection", "~> 1.0"
 gem "responders", "~> 3.1"
 
 gem "pundit", "~> 2.3"
+
+gem "figaro", "~> 1.2"

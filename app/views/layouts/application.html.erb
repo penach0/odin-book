@@ -8,6 +8,13 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+    <style>
+      <% if user_signed_in? %>
+        [data-visible-to]:not([data-visible-to="<%= current_user.id %>"]) {
+          display: none
+        }
+      <% end %>
+    </style>
   </head>
 
   <body>

@@ -1,4 +1,4 @@
-<div class="post__actions">
+<div class="post__actions" data-visible-to="<%= post.creator_id %>">
     <%= link_to "Edit", edit_post_path(post) %>
 
     <% if show_page %>

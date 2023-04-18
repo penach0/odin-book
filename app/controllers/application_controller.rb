@@ -10,6 +10,7 @@ class ApplicationController < ActionController::Base
   respond_to :html
 
   before_action :authenticate_user!
+  before_action :fill_required_info, if: :user_signed_in?
 
   private
     def after_sign_in_path_for(user)
@@ -19,5 +20,12 @@ class ApplicationController < ActionController::Base
       end
 
       super(user)
+    end
+
+    def fill_required_info
+      unless current_user.profile.required_info?
+        redirect_to edit_user_profile_path(current_user)
+        flash[:error] = "You need to fill in your first and last name"
+      end
     end
 end

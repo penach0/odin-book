@@ -1,4 +1,5 @@
 class ProfilesController < ApplicationController
+  skip_before_action :fill_required_info, except: :show
   before_action :set_variables
   before_action -> { authorize @profile }, only: [:edit, :update]
 

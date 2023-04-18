@@ -10,10 +10,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-  def create
-    super
-    resource.create_profile
-  end
+  # def create
+  #   super
+  #   resource.create_profile
+  # end
 
   # GET /resource/edit
   # def edit

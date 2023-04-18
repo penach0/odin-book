@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: %i[facebook]
 
+  after_create_commit { create_profile }
   has_many :friendships, dependent: :destroy
   has_many :inverse_friendships, foreign_key: :friend_id, class_name: "Friendship", dependent: :destroy
   has_many :friends, -> { Friendship.accepted }, through: :friendships
@@ -21,8 +22,6 @@ class User < ApplicationRecord
     find_or_create_by(provider: auth.provider, uid: auth.uid) do |user|
       user.email = auth.info.email
       user.password = Devise.friendly_token[0, 20]
-      user.profile.first_name = auth.info.first_name
-      user.profile.last_name = auth.info.last_name
     end
   end
 

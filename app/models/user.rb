@@ -17,6 +17,15 @@ class User < ApplicationRecord
 
   scope :all_except, ->(user) { where.not(id: user.id) }
 
+  def self.from_omniauth(auth)
+    find_or_create_by(provider: auth.provider, uid: auth.uid) do |user|
+      user.email = auth.info.email
+      user.password = Devise.friendly_token[0, 20]
+      user.profile.first_name = auth.info.first_name
+      user.profile.last_name = auth.info.last_name
+    end
+  end
+
   def active_friends
     friends + inverse_friends
   end

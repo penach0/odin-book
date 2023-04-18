@@ -32,3 +32,6 @@
 
 # Ignore figaro file
 /config/application.yml
+
+# Ignore SSL certificate and key
+/config/certs

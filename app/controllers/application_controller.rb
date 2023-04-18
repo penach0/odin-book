@@ -3,7 +3,6 @@ require "application_responder"
 class ApplicationController < ActionController::Base
   include Pundit::Authorization
 
-  before_action :set_current_user, if: :user_signed_in?
   # after_action :verify_authorized, except: :index
   # after_action :verify_policy_scoped, only: :index
 
@@ -20,9 +19,5 @@ class ApplicationController < ActionController::Base
       end
 
       super(user)
-    end
-
-    def set_current_user
-      Current.user = current_user
     end
 end

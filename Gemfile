@@ -89,3 +89,5 @@ gem "pundit", "~> 2.3"
 gem "figaro", "~> 1.2"
 
 gem "omniauth-google-oauth2", "~> 1.1"
+
+gem "omniauth-github", "~> 2.0"

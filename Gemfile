@@ -80,6 +80,8 @@ end
 gem "devise", "~> 4.9"
 
 gem "omniauth-facebook", "~> 9.0"
+gem "omniauth-google-oauth2", "~> 1.1"
+gem "omniauth-github", "~> 2.0"
 gem "omniauth-rails_csrf_protection", "~> 1.0"
 
 gem "responders", "~> 3.1"
@@ -87,7 +89,3 @@ gem "responders", "~> 3.1"
 gem "pundit", "~> 2.3"
 
 gem "figaro", "~> 1.2"
-
-gem "omniauth-google-oauth2", "~> 1.1"
-
-gem "omniauth-github", "~> 2.0"

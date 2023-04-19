@@ -1,5 +1,5 @@
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
-  skip_before_action :verify_authenticity_token, only: :facebook
+  skip_before_action :verify_authenticity_token, only: [:facebook, :google_oauth2, :github]
 
   def facebook
     handle_auth("Facebook")
@@ -7,6 +7,10 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   def google_oauth2
     handle_auth("Google")
+  end
+
+  def github
+    handle_auth("Github")
   end
 
   def handle_auth(kind)

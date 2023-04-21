@@ -10,6 +10,7 @@ class CommentsController < ApplicationController
   def show; end
 
   def new
+    @post = Post.find(params[:post_id])
     @comment = Comment.new
   end
 
@@ -25,10 +26,13 @@ class CommentsController < ApplicationController
         format.html { redirect_back(fallback_location: root_path) }
         format.turbo_stream
       end
+    else
+      render :new, status: :unprocessable_entity
     end
   end
 
   def update
+    @post = Post.find(params[:post_id])
     @comment.update(comment_params)
   end
 

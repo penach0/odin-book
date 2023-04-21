@@ -1,7 +1,8 @@
-<div id="<%= dom_id comment %>">
-  <%= comment.body %>
-  
-  <strong>By:</strong> <%= comment.commenter.profile.full_name %>
-
-  <%= render "comments/creator_controls", comment: comment %>
-</div>
+<%= turbo_frame_tag comment do %>
+  <div class="comment">
+    <%= comment.body %>
+    
+    <strong>By:</strong> <%= comment.commenter.profile.full_name %>
+    <%= render "comments/creator_controls", comment: comment %>
+  </div>
+<% end %>

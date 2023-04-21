@@ -32,12 +32,12 @@ class CommentsController < ApplicationController
   end
 
   def update
-    @post = Post.find(params[:post_id])
+    @post = @comment.commented_post
     @comment.update(comment_params)
   end
 
   def destroy
-    @post = Post.find(@comment.commented_post_id)
+    @post = @comment.commented_post
     @comment.destroy
 
     respond_to do |format|

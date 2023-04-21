@@ -1,9 +1,6 @@
-<h1>New comment</h1>
+<h2>New comment</h2>
 
-<%= render "form", comment: @comment %>
+<%= turbo_frame_tag "new_comment" do %>
+  <%= render "form", comment: @comment, post: @post %>
+<% end %>
 
-<br>
-
-<div>
-  <%= link_to "Back to comments", comments_path %>
-</div>

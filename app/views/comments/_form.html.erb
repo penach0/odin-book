@@ -2,7 +2,7 @@
   <%= form_with(model: [post, comment]) do |form| %>
     <%= render "shared/form_errors", model: comment %>
 
-    <%= form.text_area :body %>
+    <%= form.text_area :body, autocomplete: "off" %>
 
     <%= form.submit %>
   <% end %>

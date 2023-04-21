@@ -9,7 +9,9 @@
             <%= render post.comments %>
         <% end %>
 
-        <%= render "comments/form", comment: Comment.new, post: post %>
+        <%= turbo_frame_tag "new_comment" do %>
+            <%= render "comments/form", comment: Comment.new, post: post %>
+        <% end %>
     </div>
 
 

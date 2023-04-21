@@ -1,1 +1,5 @@
 <%= turbo_stream.append dom_id(@post, "comments"), @comment %>
+
+<%= turbo_stream.update "new_comment" do %>
+    <%= render "form", comment: Comment.new, post: @post %>
+<% end %>

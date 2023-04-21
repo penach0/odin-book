@@ -5,35 +5,35 @@ class CommentsController < ApplicationController
 
   def index
     @comments = Comment.all
-    respond_with(@comments)
   end
 
-  def show
-    respond_with(@comment)
-  end
+  def show; end
 
   def new
     @comment = Comment.new
-    respond_with(@comment)
   end
 
-  def edit
-  end
+  def edit; end
 
   def create
-    @comment = Comment.new(comment_params)
-    @comment.save
-    respond_with(@comment)
+    @post = Post.find(params[:post_id])
+    @comment = @post.comments.build(comment_params)
+    @comment.commenter = current_user
+
+    if @comment.save
+      respond_to do |format|
+        format.html { redirect_back(fallback_location: root_path) }
+        format.turbo_stream { turbo_stream.append "comments", @comment }
+      end
+    end
   end
 
   def update
     @comment.update(comment_params)
-    respond_with(@comment)
   end
 
   def destroy
     @comment.destroy
-    respond_with(@comment)
   end
 
   private
@@ -42,6 +42,6 @@ class CommentsController < ApplicationController
     end
 
     def comment_params
-      params.require(:comment).permit(:body, :user_id, :post_id)
+      params.require(:comment).permit(:body, :commenter_id, :commented_post_id)
     end
 end

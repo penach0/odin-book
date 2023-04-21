@@ -37,7 +37,13 @@ class CommentsController < ApplicationController
   end
 
   def destroy
+    @post = Post.find(@comment.commented_post_id)
     @comment.destroy
+
+    respond_to do |format|
+      format.html { redirect_to post_path(@post) }
+      format.turbo_stream
+    end
   end
 
   private

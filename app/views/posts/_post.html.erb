@@ -4,5 +4,10 @@
         <strong>By: </strong><%= post.creator.profile.full_name %>
 
         <%= render "posts/creator_controls", post: post, show_page: local_assigns[:show_page] %>
+        <%= render post.comments %>
+
+        <%= render "comments/form", comment: Comment.new, post: post %>
     </div>
+
+
 <% end %>

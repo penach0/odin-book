@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   before_action -> { authorize @post }, only: [:edit, :update, :destroy]
 
   def index
-    @posts = Post.includes(creator: :profile).ordered
+    @posts = Post.includes(:comments, creator: :profile).ordered
   end
 
   def show; end

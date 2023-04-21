@@ -23,7 +23,7 @@ class CommentsController < ApplicationController
     if @comment.save
       respond_to do |format|
         format.html { redirect_back(fallback_location: root_path) }
-        format.turbo_stream { turbo_stream.append "comments", @comment }
+        format.turbo_stream
       end
     end
   end

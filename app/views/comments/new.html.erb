@@ -1,5 +1,5 @@
 <h2>New comment</h2>
 
-<%= turbo_frame_tag @comment do %>
+<%= turbo_frame_tag nested_dom_id(@post, "new_comment") do %>
   <%= render "form", comment: @comment, post: @post %>
 <% end %>

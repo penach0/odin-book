@@ -23,7 +23,14 @@ class CommentsController < ApplicationController
   end
 
   def update
-    @comment.update(comment_params)
+    if @comment.update(comment_params)
+      respond_to do |format|
+        format.html { redirect_back(fallback_location: root_path) }
+        format.turbo_stream
+      end
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   def destroy

@@ -3,4 +3,7 @@ class Comment < ApplicationRecord
   belongs_to :commented_post, class_name: "Post"
 
   validates :body, presence: true
+
+  broadcasts_to ->(comment) { [comment.commented_post, :comments] },
+                target: ->(comment) { "post_#{comment.commented_post.id}_comments" }
 end

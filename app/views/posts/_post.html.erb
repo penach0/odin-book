@@ -1,3 +1,5 @@
+<%= turbo_stream_from [post, "comments"] %>
+
 <%= turbo_frame_tag post do %>
     <div class="post">
         <p><%= link_to post.body, post_path(post), data: { turbo_frame: "_top" } %></p>

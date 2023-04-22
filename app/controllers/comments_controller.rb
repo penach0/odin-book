@@ -1,23 +1,14 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
-
-  respond_to :html
-
-  def index
-    @comments = Comment.all
-  end
-
-  def show; end
+  before_action :set_post, except: :edit
 
   def new
-    @post = Post.find(params[:post_id])
     @comment = Comment.new
   end
 
   def edit; end
 
   def create
-    @post = Post.find(params[:post_id])
     @comment = @post.comments.build(comment_params)
     @comment.commenter = current_user
 
@@ -32,12 +23,10 @@ class CommentsController < ApplicationController
   end
 
   def update
-    @post = @comment.commented_post
     @comment.update(comment_params)
   end
 
   def destroy
-    @post = @comment.commented_post
     @comment.destroy
 
     respond_to do |format|
@@ -49,6 +38,10 @@ class CommentsController < ApplicationController
   private
     def set_comment
       @comment = Comment.find(params[:id])
+    end
+
+    def set_post
+      @post = (@comment ? @comment.commented_post : Post.find(params[:post_id]))
     end
 
     def comment_params

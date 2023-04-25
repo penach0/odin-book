@@ -16,6 +16,11 @@
     max-width: fit-content;
 }
 
+.comment_counter {
+    display: flex;
+    justify-content: flex-end;
+}
+
 .form-box {
     display: flex;
     flex-direction: column;

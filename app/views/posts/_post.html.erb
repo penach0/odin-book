@@ -4,7 +4,10 @@
     <div class="post">
         <strong><%= link_to_feed(post.creator) %></strong>
         <p><%= post.body %></p>
-        <%= link_to "#{post.comments.size} comments", post, data: { turbo_frame: "_top" } %>
+
+        <div class="comment_counter">
+            <%= link_to "#{post.comments.size} comments", post, data: { turbo_frame: "_top" } unless post.comments.empty? %>
+        </div>
 
         <%= render "posts/creator_controls", post: post, show_page: local_assigns[:show_page] %>
 

@@ -1,12 +1,12 @@
-<div class="post">
-    <%= form_with model: [user, post] do |f| %>
-        <%= render "shared/form_errors", model: post %>
+<%= form_with model: [user, post] do |f| %>
+    <%= render "shared/form_errors", model: post %>
 
+    <div class="form-box">
         <%= f.text_area :body, autocomplete: "off", placeholder: "What's on your mind?" %>
         <%= f.submit %>
+    </div>
 
-        <% unless user %>
-            <%= link_to "Cancel", :back %>
-        <% end %>
+    <% unless user %>
+        <%= link_to "Cancel", :back %>
     <% end %>
-</div>
+<% end %>

@@ -18,12 +18,17 @@
 
 .form-box {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     border: 1px solid black;
 }
 
 .form-box textarea {
+    width: 100%;
     border: none;
     outline: none;
     resize: none;
+}
+
+.form-box input[type=submit] {
+    align-self: flex-end;
 }

@@ -2,12 +2,7 @@
 
 <%= turbo_frame_tag post do %>
     <div class="post">
-        <strong>
-            <%= link_to post.creator.profile.full_name,
-                        user_posts_path(post.creator),
-                        data: { turbo: false }
-            %>
-        </strong>
+        <strong><%= link_to_feed(post.creator) %></strong>
         <p><%= post.body %></p>
         <%= link_to "#{post.comments.size} comments", post, data: { turbo_frame: "_top" } %>
 

@@ -1,6 +1,6 @@
 class Comment < ApplicationRecord
   belongs_to :commenter, class_name: "User"
-  belongs_to :commented_post, class_name: "Post"
+  belongs_to :commented_post, class_name: "Post", counter_cache: true
 
   validates :body, presence: true
 

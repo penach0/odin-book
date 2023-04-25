@@ -2,8 +2,13 @@
 
 <%= turbo_frame_tag post do %>
     <div class="post">
+        <strong>
+            <%= link_to post.creator.profile.full_name,
+                        user_posts_path(post.creator),
+                        data: { turbo: false }
+            %>
+        </strong>
         <p><%= link_to post.body, post_path(post), data: { turbo_frame: "_top" } %></p>
-        <strong>By: </strong><%= post.creator.profile.full_name %>
         <%= link_to "#{post.comments.size} comments", post %>
 
         <%= render "posts/creator_controls", post: post, show_page: local_assigns[:show_page] %>

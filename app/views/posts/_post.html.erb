@@ -8,8 +8,8 @@
                         data: { turbo: false }
             %>
         </strong>
-        <p><%= link_to post.body, post_path(post), data: { turbo_frame: "_top" } %></p>
-        <%= link_to "#{post.comments.size} comments", post %>
+        <p><%= post.body %></p>
+        <%= link_to "#{post.comments.size} comments", post, data: { turbo_frame: "_top" } %>
 
         <%= render "posts/creator_controls", post: post, show_page: local_assigns[:show_page] %>
 
@@ -18,7 +18,7 @@
                 <%= render post.comments %>
             <% elsif post.latest_comment %>
                 <%= render "comments/comment", comment: post.latest_comment %>
-                <%= link_to "See more comments", post, data: { turbo: false } if post.comments.size > 1 %>
+                <%= link_to "See more comments", post, data: { turbo_frame: "_top" } if post.comments.size > 1 %>
             <% end %>
         <% end %>
 

@@ -4,6 +4,7 @@
     <div class="post">
         <p><%= link_to post.body, post_path(post), data: { turbo_frame: "_top" } %></p>
         <strong>By: </strong><%= post.creator.profile.full_name %>
+        <%= link_to "#{post.comments.size} comments", post %>
 
         <%= render "posts/creator_controls", post: post, show_page: local_assigns[:show_page] %>
 

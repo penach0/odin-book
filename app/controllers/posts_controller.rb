@@ -1,13 +1,16 @@
 class PostsController < ApplicationController
   before_action :set_user, except: [:index, :show]
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :set_post, only: [:edit, :update, :destroy]
   before_action -> { authorize @post }, only: [:edit, :update, :destroy]
 
   def index
-    @posts = Post.includes(:comments, creator: :profile).ordered
+    @posts = Post.includes(latest_comment: [:commenter],
+                           creator: [:profile]).ordered
   end
 
-  def show; end
+  def show
+    @post = Post.with_info.find(params[:id])
+  end
 
   def new
     @post = @user.created_posts.build

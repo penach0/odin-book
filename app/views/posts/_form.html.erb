@@ -2,7 +2,7 @@
     <%= form_with model: [user, post] do |f| %>
         <%= render "shared/form_errors", model: post %>
 
-        <%= f.text_area :body, autocomplete: "off" %>
+        <%= f.text_area :body, autocomplete: "off", placeholder: "What's on your mind?" %>
         <%= f.submit %>
 
         <% unless user %>

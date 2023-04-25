@@ -4,12 +4,11 @@ class PostsController < ApplicationController
   before_action -> { authorize @post }, only: [:edit, :update, :destroy]
 
   def index
-    @posts = Post.includes(latest_comment: [:commenter],
-                           creator: [:profile]).ordered
+    @posts = Post.with_info(:latest_comment).ordered
   end
 
   def show
-    @post = Post.with_info.find(params[:id])
+    @post = Post.with_info(:comments).find(params[:id])
   end
 
   def new

@@ -11,7 +11,7 @@ class Post < ApplicationRecord
   validates :body, presence: true
 
   scope :ordered, -> { order(created_at: :desc) }
-  scope :with_info, -> { includes(comments: [:commenter], creator: [:profile]) }
+  scope :with_info, ->(comments_needed) { includes(comments_needed => [:commenter], creator: [:profile]) }
 
   broadcasts_to ->(post) { "posts" }, inserts_by: :prepend
 end

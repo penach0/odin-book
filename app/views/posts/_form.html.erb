@@ -5,8 +5,4 @@
         <%= f.text_area :body, autocomplete: "off", placeholder: "What's on your mind?" %>
         <%= f.submit %>
     </div>
-
-    <% unless user %>
-        <%= link_to "Cancel", :back %>
-    <% end %>
 <% end %>

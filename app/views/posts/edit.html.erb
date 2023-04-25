@@ -2,4 +2,5 @@
 
 <%= turbo_frame_tag @post do %>
     <%= render "form", user: nil, post: @post %>
+    <%= link_to "Cancel", :back %>
 <% end %>

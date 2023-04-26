@@ -1,11 +1,28 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-one:
+<% 1.upto(10) do |i| %>
+comment_<%= i %>:
+  id: <%= i %>
   body: MyText
   commenter: one
   commented_post: first
+<% end %>
 
-two:
+<% 1.upto(10) do |i| %>
+comment_<%= i + 20 %>:
+  id: <%= i +20 %>
   body: MyText
+  commenter: one
+  commented_post: first
+<% end %>
+
+
+latest_one:
+  id: 1000
+  body: LastOne
+  commenter: one
+  commented_post: first
+
+latest_two:
+  id: 2000
+  body: LastTwo
   commenter: two
   commented_post: second

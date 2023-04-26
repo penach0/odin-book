@@ -1,5 +1,5 @@
 .feed {
-    width: 1000px;
+    width: min(600px,95%);
     margin-inline: auto;
 
     display: grid;

@@ -14,10 +14,15 @@
  *= require_self
  */
 
- * {
-   box-sizing: border-box;
- }
+html, body {
+  height: 100%;
+}
 
- form {
-    display: inline;
- }
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+form {
+  display: inline;
+}

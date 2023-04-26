@@ -6,6 +6,11 @@
     row-gap: 20px;
 }
 
+#posts {
+    display: grid;
+    row-gap: 8px;
+}
+
 .post,
 .comment {
     border: 1px solid black;

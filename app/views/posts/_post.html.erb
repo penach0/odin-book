@@ -11,6 +11,11 @@
 
         <%= render "posts/creator_controls", post: post, show_page: local_assigns[:show_page] %>
 
+        <div class="user-actions">
+            <%= button_to "Like", "#", method: :get, data: { turbo:false } %>
+            <%= button_to "Comment", "#", method: :get, data: { turbo:false } %>
+        </div>
+
         <%= turbo_frame_tag nested_dom_id(post, "comments") do %>
             <% if local_assigns[:show_page] %>
                 <%= render post.comments %>

@@ -27,6 +27,15 @@
     row-gap: 10px;
 }
 
+.user-actions {
+    display: flex;
+    justify-content: space-around;
+
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    padding: 5px 0;
+}
+
 .comment {
     max-width: fit-content;
 }

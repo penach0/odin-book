@@ -15,6 +15,10 @@ class PostTest < ActiveSupport::TestCase
     refute @post.valid?
   end
 
+  test "has_one latest_comment" do
+    assert_equal comments(:latest_one), @post.latest_comment
+  end
+
   test "posts ordered from recent to older" do
     ordered_posts = Post.ordered
 

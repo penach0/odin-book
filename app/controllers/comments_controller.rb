@@ -1,12 +1,11 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
   before_action :set_post, except: :edit
+  before_action -> { authorize @comment }, only: [:edit, :update, :destroy]
 
   def new
     @comment = Comment.new
   end
-
-  def edit; end
 
   def create
     @comment = @post.comments.build(comment_params)
@@ -21,6 +20,8 @@ class CommentsController < ApplicationController
       render :new, status: :unprocessable_entity
     end
   end
+
+  def edit; end
 
   def update
     if @comment.update(comment_params)

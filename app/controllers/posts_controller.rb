@@ -20,7 +20,7 @@ class PostsController < ApplicationController
 
     if @post.save
       respond_to do |format|
-        format.html { redirect_to @post }
+        format.html { redirect_back(fallback_location: root_path) }
         format.turbo_stream
       end
     else
@@ -32,7 +32,7 @@ class PostsController < ApplicationController
 
   def update
     if @post.update(post_params)
-      redirect_to @post
+      redirect_back(fallback_location: root_path)
     else
       render :edit, status: :unprocessable_entity
     end

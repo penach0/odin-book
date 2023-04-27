@@ -26,10 +26,11 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create the post with correct data via HTML" do
     assert_difference("Post.count") do
-      post user_posts_url(@user), params: { post: { body: "Correct data" } }
+      post user_posts_url(@user), params: { post: { body: "Correct data" } },
+                                  headers: { referer: user_posts_url(@user) }
     end
 
-    assert_redirected_to post_path(Post.last)
+    assert_redirected_to user_posts_url(@user)
   end
 
   test "should create the post with correct data via Turbo Streams" do
@@ -47,7 +48,6 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     end
 
     assert_response :unprocessable_entity
-    # assert_template :new
   end
 
   test "should get edit" do
@@ -58,8 +58,9 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
   test "should update post with correct data" do
     body_update = "Correct data"
 
-    patch post_url(@post), params: { post: { body: body_update } }
-    assert_redirected_to post_url(@post)
+    patch post_url(@post), params: { post: { body: body_update } },
+                           headers: { referer: user_posts_url(@user) }
+    assert_redirected_to user_posts_url(@user)
 
     @post.reload
     assert_equal body_update, @post.body

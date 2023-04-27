@@ -25,10 +25,7 @@ class CommentsController < ApplicationController
 
   def update
     if @comment.update(comment_params)
-      respond_to do |format|
-        format.html { redirect_back(fallback_location: root_path) }
-        format.turbo_stream
-      end
+      redirect_back(fallback_location: root_path)
     else
       render :edit, status: :unprocessable_entity
     end

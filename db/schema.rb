@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_25_083446) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_27_095047) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -41,6 +41,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_25_083446) do
     t.index "GREATEST(user_id, friend_id), LEAST(user_id, friend_id)", name: "index_friendships_on_interchangeable_and_user_id_friend_id", unique: true
     t.index ["friend_id"], name: "index_friendships_on_friend_id"
     t.index ["user_id"], name: "index_friendships_on_user_id"
+  end
+
+  create_table "likes", force: :cascade do |t|
+    t.bigint "liker_id", null: false
+    t.string "likable_type", null: false
+    t.bigint "likable_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["likable_type", "likable_id"], name: "index_likes_on_likable"
+    t.index ["liker_id", "likable_id", "likable_type"], name: "index_likes_on_liker_id_and_likable_id_and_likable_type", unique: true
+    t.index ["liker_id"], name: "index_likes_on_liker_id"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -105,6 +116,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_25_083446) do
   add_foreign_key "comments", "users", column: "commenter_id"
   add_foreign_key "friendships", "users"
   add_foreign_key "friendships", "users", column: "friend_id"
+  add_foreign_key "likes", "users", column: "liker_id"
   add_foreign_key "posts", "users", column: "creator_id"
   add_foreign_key "profiles", "users"
   add_foreign_key "social_accounts", "authentication_providers"

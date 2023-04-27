@@ -16,6 +16,7 @@ class User < ApplicationRecord
   has_one :profile, dependent: :destroy
   has_many :created_posts, foreign_key: :creator_id, class_name: "Post", dependent: :destroy
   has_many :comments, foreign_key: :commenter_id, class_name: "Comment", dependent: :destroy
+  has_many :likes, foreign_key: :liker_id, class_name: "Like"
 
   scope :all_except, ->(user) { where.not(id: user.id) }
 

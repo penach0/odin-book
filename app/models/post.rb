@@ -3,6 +3,7 @@ class Post < ApplicationRecord
   has_many :comments, -> { order(:created_at) },
            foreign_key: :commented_post_id,
            class_name: "Comment", dependent: :destroy
+  has_many :likes, as: :likable, dependent: :destroy
 
   has_one :latest_comment, -> { Comment.latest_comments_by_post },
           foreign_key: :commented_post_id,

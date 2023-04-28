@@ -15,7 +15,10 @@
         <div class="user-actions">
             <%= turbo_frame_tag "like_action" do %>
                 <% if current_user.likes?(post) %>
-                    <%= button_to "Dislike", "#", method: :delete %>
+                    <%= button_to "Dislike", 
+                        like_path(Like.find_by(liker_id: current_user.id, likable_id: post.id, likable_type: "Post")),
+                        method: :delete,
+                        data: { turbo:false } %>
                 <% else %>
                     <%= button_to "Like", post_likes_path(post), params: { likable_gid: post.to_gid_param } %>
                 <% end %>

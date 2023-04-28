@@ -9,22 +9,24 @@
             <%= turbo_frame_tag nested_dom_id(post, "likes_counter") do %>
                 <span><%= link_to "#{post.likes.size} likes", "#" unless post.likes.empty? %></span>
             <% end %>
-            <span><%= link_to "#{post.comments.size} comments", post, data: { turbo_frame: "_top" } unless post.comments.empty? %></span>
+            <%= turbo_frame_tag nested_dom_id(post, "comments_counter") do %>
+                <span><%= link_to "#{post.comments.size} comments", post, data: { turbo_frame: "_top" } unless post.comments.empty? %></span>
+            <% end %>
         </div>
 
         <%= render "posts/creator_controls", post: post, show_page: local_assigns[:show_page] %>
 
         <div class="user-actions">
-            <%= render "shared/like_action", likable: post %>
+            <%= render "shared/like_action", likable: post, user: local_assigns[:user] %>
             <%= button_to "Comment", "#", method: :get, data: { turbo:false } %>
         </div>
 
         <%= turbo_frame_tag nested_dom_id(post, "comments") do %>
             <% if local_assigns[:show_page] %>
-                <%= render post.comments %>
+                <%= render post.comments, user: local_assigns[:user] %>
             <% elsif post.latest_comment %>
-                <%= render "comments/comment", comment: post.latest_comment %>
                 <%= link_to "See more comments", post, data: { turbo_frame: "_top" } if post.comments.size > 1 %>
+                <%= render "comments/comment", comment: post.latest_comment, user: local_assigns[:user] %>
             <% end %>
         <% end %>
 

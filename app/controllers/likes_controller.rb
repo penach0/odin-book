@@ -10,8 +10,9 @@ class LikesController < ApplicationController
   end
 
   def destroy
-    @like = Like.find(params[:id])
-    @like.destroy
+    like = Like.find(params[:id])
+    @likable = like.likable
+    like.destroy
 
     respond_to do |format|
       format.html { redirect_back(fallback_location: root_path) }

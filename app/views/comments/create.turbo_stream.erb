@@ -3,3 +3,5 @@
 <%= turbo_stream.update nested_dom_id(@post, "new_comment") do %>
     <%= render "form", comment: Comment.new, post: @post %>
 <% end %>
+
+<%= stream_counter_update model: @post, type: :comments %>

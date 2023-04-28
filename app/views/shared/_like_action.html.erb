@@ -1,0 +1,9 @@
+<%= turbo_frame_tag nested_dom_id(likable, "like_action") do %>
+    <% if current_user.likes?(likable) %>
+        <%= button_to "Dislike", 
+            like_path(Like.find_by(liker_id: current_user.id, likable: likable)),
+            method: :delete %>
+    <% else %>
+        <%= button_to "Like", polymorphic_path([likable, :likes]), params: { likable_gid: likable.to_gid_param } %>
+    <% end %>
+<% end %>

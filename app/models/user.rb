@@ -52,6 +52,6 @@ class User < ApplicationRecord
   end
 
   def likes?(resource)
-    likes.exists?(likable_id: resource.id, likable_type: resource.type)
+    likes.exists?(likable: resource)
   end
 end

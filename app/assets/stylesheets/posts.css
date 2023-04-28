@@ -38,7 +38,9 @@
 
 .comment {
     max-width: fit-content;
+    display: inline-block;
 }
+
 
 .post__counters {
     display: flex;

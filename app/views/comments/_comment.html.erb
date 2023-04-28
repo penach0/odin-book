@@ -2,7 +2,12 @@
   <div class="comment">
     <strong><%= link_to_feed(comment.commenter) %></strong>
     <p><%= comment.body %></p>
-    
+  
     <%= render "comments/creator_controls", comment: comment %>
   </div>
+  <%= turbo_frame_tag nested_dom_id(comment, "likes_counter") do %>
+      <span><%= link_to "#{comment.likes.size} likes", "#" unless comment.likes.empty? %></span>
+  <% end %>
+
+  <div class="comment-actions"><%= render "shared/like_action", likable: comment %></div>
 <% end %>

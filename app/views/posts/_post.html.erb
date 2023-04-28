@@ -7,9 +7,9 @@
 
         <div class="post__counters">
             <%= turbo_frame_tag nested_dom_id(post, "likes_counter") do %>
-                <div><%= link_to "#{post.likes.size} likes", "#" unless post.likes.empty? %></div>
+                <span><%= link_to "#{post.likes.size} likes", "#" unless post.likes.empty? %></span>
             <% end %>
-            <%= link_to "#{post.comments.size} comments", post, data: { turbo_frame: "_top" } unless post.comments.empty? %>
+            <span><%= link_to "#{post.comments.size} comments", post, data: { turbo_frame: "_top" } unless post.comments.empty? %></span>
         </div>
 
         <%= render "posts/creator_controls", post: post, show_page: local_assigns[:show_page] %>

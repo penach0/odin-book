@@ -50,4 +50,8 @@ class User < ApplicationRecord
   def friend?(other)
     active_friends.include?(other)
   end
+
+  def likes?(resource)
+    likes.exists?(likable_id: resource.id, likable_type: resource.type)
+  end
 end

@@ -5,7 +5,8 @@
         <strong><%= link_to_feed(post.creator) %></strong>
         <p><%= post.body %></p>
 
-        <div class="comment_counter">
+        <div class="post__counters">
+            <div><%= link_to "#{post.likes.size} likes", "#" unless post.likes.empty? %></div>
             <%= link_to "#{post.comments.size} comments", post, data: { turbo_frame: "_top" } unless post.comments.empty? %>
         </div>
 

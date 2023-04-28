@@ -12,7 +12,8 @@
         <%= render "posts/creator_controls", post: post, show_page: local_assigns[:show_page] %>
 
         <div class="user-actions">
-            <%= button_to "Like", "#", method: :get, data: { turbo:false } %>
+            <%= button_to "Like", post_likes_path(post), params: { likable_gid: post.to_gid_param }, 
+                                                         data: { turbo:false } %>
             <%= button_to "Comment", "#", method: :get, data: { turbo:false } %>
         </div>
 

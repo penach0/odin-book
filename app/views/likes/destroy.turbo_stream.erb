@@ -1,3 +1,7 @@
 <%= turbo_stream.update nested_dom_id(@likable, "like_action") do %>
     <%= button_to "Like", polymorphic_path([@likable, :likes]), params: { likable_gid: @likable.to_gid_param } %>
 <% end %>
+
+<%= turbo_stream.update nested_dom_id(@likable, "likes_counter") do %>
+    <div><%= link_to "#{@likable.likes.size} likes", "#" unless @likable.likes.empty? %></div>
+<% end %>

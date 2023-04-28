@@ -6,7 +6,9 @@
         <p><%= post.body %></p>
 
         <div class="post__counters">
-            <div><%= link_to "#{post.likes.size} likes", "#" unless post.likes.empty? %></div>
+            <%= turbo_frame_tag nested_dom_id(post, "likes_counter") do %>
+                <div><%= link_to "#{post.likes.size} likes", "#" unless post.likes.empty? %></div>
+            <% end %>
             <%= link_to "#{post.comments.size} comments", post, data: { turbo_frame: "_top" } unless post.comments.empty? %>
         </div>
 

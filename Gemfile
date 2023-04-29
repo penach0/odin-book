@@ -68,6 +68,9 @@ group :development do
 
   # Auto testing gem
   gem "guard", "~> 2.18"
+
+  # Email Previewer
+  gem "letter_opener", "~> 1.8"
 end
 
 group :test do

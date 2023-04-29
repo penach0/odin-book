@@ -1,7 +1,21 @@
 class ProfilesController < ApplicationController
   skip_before_action :fill_required_info, except: :show
-  before_action :set_variables
+  before_action :set_variables, except: [:new, :create]
   before_action -> { authorize @profile }, only: [:edit, :update]
+
+  def new
+    @profile = Profile.new
+  end
+
+  def create
+    @profile = current_user.create_profile(profile_params)
+
+    if @profile.save
+      redirect_to user_profile_path(@user)
+    else
+      render :new, status: :unprocessable_entity
+    end
+  end
 
   def show; end
 

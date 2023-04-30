@@ -3,10 +3,10 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1>Welcome to OdinBook, <%= @user.name %></h1>
+    <h1>Welcome to OdinBook, <%= @user.profile.full_name %></h1>
     <p>
       You have successfully signed up to odinbook.com,
-      your username is: <%= @user.login %>.<br>
+      remember to fill out your profile if you haven't already.<br>
     </p>
     <p>
       To login to the site, just follow this link: <%= link_to "Login", "http://localhost:3000/users/sign_in" %>.

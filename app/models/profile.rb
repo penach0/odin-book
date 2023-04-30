@@ -3,6 +3,17 @@ class Profile < ApplicationRecord
 
   validates :first_name, :last_name, presence: true
 
+  def self.from_omniauth(user, auth)
+    return if user.profile
+
+    name = auth.info.name.split
+
+    user.create_profile(
+      first_name: name.first,
+      last_name: name.last
+    )
+  end
+
   def full_name
     "#{first_name} #{last_name}"
   end

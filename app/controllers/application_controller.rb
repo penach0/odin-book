@@ -25,7 +25,7 @@ class ApplicationController < ActionController::Base
     def fill_required_info
       return if current_user.profile
 
-      redirect_back(fallback_location: new_user_profile_path(current_user))
+      redirect_to new_user_profile_path(current_user)
       flash[:error] = "You need to fill in your first and last name"
     end
 end

@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
   private
     def after_sign_in_path_for(user)
       if user.profile.incomplete?
-        flash.now[:notice] = "Your profile is incomplete, give people the chance to know you better"
+        flash[:notice] = "Your profile is incomplete, give people the chance to know you better"
         return edit_user_profile_path(user)
       end
 
@@ -23,9 +23,9 @@ class ApplicationController < ActionController::Base
     end
 
     def fill_required_info
-      unless current_user.profile.required_info?
-        redirect_to edit_user_profile_path(current_user)
-        flash[:error] = "You need to fill in your first and last name"
-      end
+      return if current_user.profile
+
+      redirect_back(fallback_location: new_user_profile_path(current_user))
+      flash[:error] = "You need to fill in your first and last name"
     end
 end

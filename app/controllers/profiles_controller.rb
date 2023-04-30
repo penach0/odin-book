@@ -1,6 +1,7 @@
 class ProfilesController < ApplicationController
-  skip_before_action :fill_required_info, except: :show
-  before_action :set_variables, except: [:new, :create]
+  skip_before_action :fill_required_info, only: [:new, :create]
+  before_action :set_user
+  before_action :set_profile, except: [:new, :create]
   before_action -> { authorize @profile }, only: [:edit, :update]
 
   def new
@@ -8,7 +9,7 @@ class ProfilesController < ApplicationController
   end
 
   def create
-    @profile = current_user.create_profile(profile_params)
+    @profile = @user.create_profile(profile_params)
 
     if @profile.save
       redirect_to user_profile_path(@user)
@@ -34,8 +35,11 @@ class ProfilesController < ApplicationController
       params.require(:profile).permit(:first_name, :last_name, :date_of_birth, :bio)
     end
 
-    def set_variables
-      @user = User.find(params[:user_id])
+    def set_user
+      @user = current_user
+    end
+
+    def set_profile
       @profile = @user.profile
     end
 end

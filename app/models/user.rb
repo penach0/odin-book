@@ -5,7 +5,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: %i[facebook google_oauth2 github]
 
-  # after_create_commit { create_profile }
   has_many :friendships, dependent: :destroy
   has_many :inverse_friendships, foreign_key: :friend_id, class_name: "Friendship", dependent: :destroy
   has_many :friends, -> { Friendship.accepted }, through: :friendships
@@ -53,5 +52,9 @@ class User < ApplicationRecord
 
   def likes?(resource)
     likes.exists?(likable: resource)
+  end
+
+  def identification
+    profile ? profile.full_name : email.split('@').first
   end
 end

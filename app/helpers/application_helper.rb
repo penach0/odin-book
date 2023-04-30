@@ -4,7 +4,7 @@ module ApplicationHelper
   end
 
   def link_to_feed(user)
-    link_to user.profile.full_name,
+    link_to user.identification,
             user_posts_path(user),
             data: { turbo: false }
   end

@@ -3,7 +3,7 @@
 <ul>
     <% @users.each do |user| %>
         <li>
-            <%= link_to user.profile.full_name, user_profile_path(user) %>
+            <%= link_to user.identification, user_profile_path(user) %>
             <% if current_user.friend?(user) %>
                 <strong>You are friends</strong> 
                 <%= button_to "Unfriend",

@@ -15,7 +15,7 @@
                 <%= render "shared/request_response",
                     friendship: Friendship.find_by(user_id: user.id, friend_id: current_user.id) %>
             <% else %>
-                <%= link_to "Send Request", friendships_create_path(friend_id: user.id) %>
+                <%= button_to "Send Request", friendships_path(friend_id: user.id) %>
             <% end %>
         </li>
     <% end %>

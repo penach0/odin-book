@@ -35,7 +35,7 @@ class CommentsController < ApplicationController
     @comment.destroy
 
     respond_to do |format|
-      format.html { redirect_to post_path(@post) }
+      format.html { redirect_back(fallback_location: user_posts_path(current_user)) }
       format.turbo_stream
     end
   end
@@ -45,11 +45,11 @@ class CommentsController < ApplicationController
       @comment = Comment.find(params[:id])
     end
 
-    def set_post
-      @post = (@comment ? @comment.commented_post : Post.find(params[:post_id]))
+    def set_commentable
+      @commentable = (@comment ? @comment.commentable : Post.find(params[:post_id]))
     end
 
     def comment_params
-      params.require(:comment).permit(:body, :commenter_id, :commented_post_id)
+      params.require(:comment).permit(:body, :commenter_id, :commentable_tye, :commentable_id)
     end
 end

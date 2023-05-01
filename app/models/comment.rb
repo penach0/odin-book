@@ -7,10 +7,10 @@ class Comment < ApplicationRecord
   validates :body, presence: true
 
   scope :latest_comments_by_post, lambda {
-    latest_comments_ids = select("max(id)").group(:commented_post_id)
+    latest_comments_ids = select("max(id)").group(:commentable_id).having(commentable_type: "Post")
     where(id: latest_comments_ids)
   }
 
-  broadcasts_to ->(comment) { [comment.commented_post, :comments] },
-                target: ->(comment) { "post_#{comment.commented_post.id}_comments" }
+  broadcasts_to ->(comment) { [comment.commentable, :comments] },
+                target: ->(comment) { "post_#{comment.commentable.id}_comments" }
 end

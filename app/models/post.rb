@@ -4,7 +4,7 @@ class Post < ApplicationRecord
   has_many :likes, as: :likable, dependent: :destroy
 
   has_one :latest_comment, -> { Comment.latest_comments_by_post },
-          foreign_key: :commented_post_id,
+          foreign_key: :commentable_id,
           class_name: "Comment"
 
   validates :body, presence: true

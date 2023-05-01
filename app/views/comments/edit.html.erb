@@ -1,6 +1,6 @@
 <h2>Edit Comment</h2>
 
 <%= turbo_frame_tag @comment do %>
-  <%= render "form", comment: @comment, post: nil %>
+  <%= render "form", comment: @comment, commentable: nil %>
   <%= link_to "Cancel", :back %>
 <% end %>

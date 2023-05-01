@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
-  before_action :set_post, except: :edit
+  before_action :set_commentable, except: :edit
   before_action -> { authorize @comment }, only: [:edit, :update, :destroy]
 
   def new
@@ -8,7 +8,7 @@ class CommentsController < ApplicationController
   end
 
   def create
-    @comment = @post.comments.build(comment_params)
+    @comment = @commentable.comments.build(comment_params)
     @comment.commenter = current_user
 
     if @comment.save
@@ -46,10 +46,10 @@ class CommentsController < ApplicationController
     end
 
     def set_commentable
-      @commentable = (@comment ? @comment.commentable : Post.find(params[:post_id]))
+      @commentable = GlobalID::Locator.locate(params[:commentable_gid])
     end
 
     def comment_params
-      params.require(:comment).permit(:body, :commenter_id, :commentable_tye, :commentable_id)
+      params.require(:comment).permit(:body, :commenter_id, :commentable_tye, :commentable_id, :commentable_gid)
     end
 end

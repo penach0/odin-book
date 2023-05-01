@@ -7,7 +7,7 @@ class Comment < ApplicationRecord
   validates :body, presence: true
 
   scope :latest_comments_by_post, lambda {
-    latest_comments_ids = select("max(id)").group(:commentable_id).having(commentable_type: "Post")
+    latest_comments_ids = select("max(id)").where(commentable_type: "Post").group(:commentable_id)
     where(id: latest_comments_ids)
   }
 

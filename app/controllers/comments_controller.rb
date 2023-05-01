@@ -32,6 +32,8 @@ class CommentsController < ApplicationController
   end
 
   def destroy
+    puts "CHECK THIS OUT"
+    pp @commentable
     @comment.destroy
 
     respond_to do |format|
@@ -47,11 +49,12 @@ class CommentsController < ApplicationController
 
     def set_commentable
       # @commentable = GlobalID::Locator.locate(params[:commentable_gid])
+      return @commentable = @comment.commentable if @comment
 
       if params[:comment_id]
-        @commentable = Comment.find_by_id(params[:comment_id]) 
+        @commentable = Comment.find(params[:comment_id])
       elsif params[:post_id]
-        @commentable = Post.find_by_id(params[:post_id])
+        @commentable = Post.find(params[:post_id])
       end
     end
 

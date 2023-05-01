@@ -46,7 +46,13 @@ class CommentsController < ApplicationController
     end
 
     def set_commentable
-      @commentable = GlobalID::Locator.locate(params[:commentable_gid])
+      # @commentable = GlobalID::Locator.locate(params[:commentable_gid])
+
+      if params[:comment_id]
+        @commentable = Comment.find_by_id(params[:comment_id]) 
+      elsif params[:post_id]
+        @commentable = Post.find_by_id(params[:post_id])
+      end
     end
 
     def comment_params

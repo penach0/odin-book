@@ -12,5 +12,10 @@
 
 
 
-  <div class="comment-actions"><%= render "shared/like_action", likable: comment, user: local_assigns[:user] %></div>
+  <div class="comment-actions">
+    <%= render "shared/like_action", likable: comment, user: local_assigns[:user] %>
+    <%= turbo_frame_tag nested_dom_id(comment, "new_comment") do %>
+      <%= link_to "Reply", new_comment_comment_path(comment) %>
+    <% end %>
+  </div>
 <% end %>

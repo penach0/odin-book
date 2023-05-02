@@ -3,6 +3,7 @@
 
   <div class="form-box">
     <%= form.text_area :body, autocomplete: "off", placeholder: "Write a comment..." %>
+    <%#= form.hidden_field :commentable_gid, value: commentable.to_gid_param %>
     <%= form.submit %>
   </div>
 <% end %>

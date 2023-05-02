@@ -28,7 +28,7 @@
       <% end %>
     </div>
 
-    <div class="modal">
+    <div class="modal" data-controller="modal" data-modal-target="modal"  data-action="turbo:frame-load->modal#show">
       <div class="modal-content">
         <%= turbo_frame_tag "post-modal" %>
       </div>

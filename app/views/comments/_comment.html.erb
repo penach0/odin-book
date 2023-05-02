@@ -14,9 +14,7 @@
 
   <div class="comment-actions">
     <%= render "shared/like_action", likable: comment, user: local_assigns[:user] %>
-    <%= turbo_frame_tag nested_dom_id(comment, "new_comment") do %>
-      <%= link_to "Reply", new_comment_comment_path(comment) %>
-    <% end %>
+    <%= link_to "Reply", new_comment_comment_path(comment), data: { turbo_frame: nested_dom_id(comment, "new_comment") } %>
   </div>
 
   <% if local_assigns[:show_page] %>
@@ -24,11 +22,11 @@
       <%= turbo_frame_tag nested_dom_id(comment, "comments") do %>
         <%= render comment.comments, show_page: local_assigns[:show_page] %>
       <% end %>
+      <%= turbo_frame_tag nested_dom_id(comment, "new_comment") %>
     </ul>
   <% else %>
     <%= link_to "See more replies",
                 polymorphic_path(comment.commentable),
                 data: { turbo: false } if comment.comments.size > 0 %>
   <% end %>
-
 <% end %>

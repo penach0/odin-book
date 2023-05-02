@@ -5,5 +5,5 @@
 
     <%= render "post", post: @post, user: current_user, show_page: true %>
 
-    <%= link_to "Back", :back %>
+    <%= link_to "Back", :back, data: { action: "modal#close" } %>
 <% end %>

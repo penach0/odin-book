@@ -6,4 +6,8 @@ export default class extends Controller {
     show() {
         this.modalTarget.style.display = "block"
     }
+
+    close() {
+        this.modalTarget.style.display = "none"
+    }
 }

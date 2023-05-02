@@ -28,7 +28,11 @@
       <% end %>
     </div>
 
-    <%= turbo_frame_tag "post-modal" %>
+    <div class="modal">
+      <div class="modal-content">
+        <%= turbo_frame_tag "post-modal" %>
+      </div>
+    </div>
 
     <%= yield %>
   </body>

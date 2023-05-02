@@ -23,7 +23,7 @@
 
         <%= turbo_frame_tag nested_dom_id(post, "comments") do %>
             <% if local_assigns[:show_page] %>
-                <%= render post.comments, user: local_assigns[:user] %>
+                <%= render post.comments, user: local_assigns[:user], show_page: local_assigns[:show_page] %>
             <% elsif post.latest_comment %>
                 <%= link_to "See more comments", post, data: { turbo_frame: "_top" } if post.comments.size > 1 %>
                 <%= render "comments/comment", comment: post.latest_comment, user: local_assigns[:user] %>

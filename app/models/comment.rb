@@ -12,5 +12,5 @@ class Comment < ApplicationRecord
   }
 
   broadcasts_to ->(comment) { [comment.commentable, :comments] },
-                target: ->(comment) { "post_#{comment.commentable.id}_comments" }
+                target: ->(comment) { "#{comment.commentable_type.downcase}_#{comment.commentable.id}_comments" }
 end

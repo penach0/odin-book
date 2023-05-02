@@ -32,8 +32,6 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    puts "CHECK THIS OUT"
-    pp @commentable
     @comment.destroy
 
     respond_to do |format|
@@ -48,8 +46,9 @@ class CommentsController < ApplicationController
     end
 
     def set_commentable
-      # @commentable = GlobalID::Locator.locate(params[:commentable_gid])
       return @commentable = @comment.commentable if @comment
+
+      # @commentable = GlobalID::Locator.locate(params[:commentable_gid])
 
       if params[:comment_id]
         @commentable = Comment.find(params[:comment_id])
@@ -59,6 +58,6 @@ class CommentsController < ApplicationController
     end
 
     def comment_params
-      params.require(:comment).permit(:body, :commenter_id, :commentable_tye, :commentable_id, :commentable_gid)
+      params.require(:comment).permit(:body, :commenter_id, :commentable_tye, :commentable_id)
     end
 end

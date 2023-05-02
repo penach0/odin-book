@@ -5,9 +5,11 @@ export default class extends Controller {
 
     open() {
         this.modalTarget.style.display = "flex"
+        document.body.style.overflow = "hidden"
     }
 
     close() {
         this.modalTarget.style.display = "none"
+        document.body.style.overflow = "auto"
     }
 }

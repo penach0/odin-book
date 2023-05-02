@@ -28,11 +28,9 @@
       <% end %>
     </div>
 
-    <div class="modal" data-controller="modal" data-modal-target="modal"  data-action="turbo:frame-load->modal#open">
-      <div class="modal-content">
+    <dialog class="modal" data-controller="modal" data-modal-target="modal"  data-action="turbo:frame-load->modal#open">
         <%= turbo_frame_tag "post-modal" %>
-      </div>
-    </div>
+    </dialog>
 
     <%= yield %>
   </body>

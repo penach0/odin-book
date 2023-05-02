@@ -4,12 +4,12 @@ export default class extends Controller {
     static targets = [ "modal" ]
 
     open() {
-        this.modalTarget.style.display = "flex"
+        this.modalTarget.showModal();
         document.body.style.overflow = "hidden"
     }
 
-    close() {
-        this.modalTarget.style.display = "none"
+    close() {        
+        this.modalTarget.close()
         document.body.style.overflow = "auto"
     }
 }

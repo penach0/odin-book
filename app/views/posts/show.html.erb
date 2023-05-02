@@ -1,7 +1,9 @@
-<%= turbo_stream_from "posts" %>
+<%= turbo_frame_tag "post-modal" %>
+    <%= turbo_stream_from "posts" %>
 
-<h1>Post</h1>
+    <h1>Post</h1>
 
-<%= render "post", post: @post, user: current_user, show_page: true %>
+    <%= render "post", post: @post, user: current_user, show_page: true %>
 
-<%= link_to "Back", :back %>
+    <%= link_to "Back", :back %>
+<% end %>

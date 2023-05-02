@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_01_083910) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_02_062919) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -22,6 +22,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_01_083910) do
     t.integer "likes_count"
     t.string "commentable_type"
     t.bigint "commentable_id"
+    t.integer "comments_count"
     t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable"
     t.index ["commenter_id"], name: "index_comments_on_commenter_id"
   end

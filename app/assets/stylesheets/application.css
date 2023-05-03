@@ -30,6 +30,7 @@ form {
 .modal {
   background-color: #fefefe;
   margin: auto;
+  padding: 0;
   border: 1px solid #888;
   width: min(800px, 95%);
   height: 90vh;
@@ -37,6 +38,5 @@ form {
 }
 
 .modal::backdrop {
-  overflow: hidden;
   background-color: rgba(0,0,0,0.4);
 }

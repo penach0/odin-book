@@ -12,4 +12,10 @@ export default class extends Controller {
         this.modalTarget.close()
         document.body.style.overflow = "auto"
     }
+
+    lightDismiss(e) {
+        if (e.target === this.modalTarget) {
+            this.close()
+        }
+    }
 }

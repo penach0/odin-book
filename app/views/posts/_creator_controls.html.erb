@@ -1,22 +1,23 @@
 <div class="dropdown" data-controller="dropdown">
-    <button>...</button>
-  <div class="post__actions dropdown-menu" data-dropdown-target="menu" data-visible-to="<%= post.creator_id %>">
-      <%= link_to "Edit", edit_post_path(post) %>
-
-      <% if show_page %>
-          <%= button_to "Delete", post, method: :delete,
-                                        form: {
-                                          data: {
-                                              turbo: false,
-                                              controller: "confirmation",
-                                              action: "submit->confirmation#confirm",
-                                          }
-                                        } %>
-      <% else %>
-          <%= button_to "Delete", post, method: :delete, 
-                                        form: {
-                                          data: { turbo_confirm: "Are you sure?" }
-                                        } %>   
-      <% end %>
+  <button data-action="dropdown#toggle">...</button>
+  <div class="menu" data-dropdown-target="menu">
+    <div class="post__actions" data-visible-to="<%= post.creator_id %>">
+        <%= link_to "Edit", edit_post_path(post) %>
+        <% if show_page %>
+            <%= button_to "Delete", post, method: :delete,
+                                          form: {
+                                            data: {
+                                                turbo: false,
+                                                controller: "confirmation",
+                                                action: "submit->confirmation#confirm",
+                                            }
+                                          } %>
+        <% else %>
+            <%= button_to "Delete", post, method: :delete,
+                                          form: {
+                                            data: { turbo_confirm: "Are you sure?" }
+                                          } %>
+        <% end %>
+    </div>
   </div>
 </div>

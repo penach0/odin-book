@@ -40,3 +40,13 @@ form {
 .modal::backdrop {
   background-color: rgba(0,0,0,0.4);
 }
+
+.dropdown > .menu {
+  display: none;
+  position: absolute;
+  border: 1px solid black;
+  padding: 15px;
+  background-color: white;
+
+  z-index: 2;
+}

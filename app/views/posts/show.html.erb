@@ -4,10 +4,12 @@
     <div class="post__header">
         <div></div>
         <h1><%= @post.creator.profile.first_name %>'s Post</h1>
-        <button data-action="modal#close">X</button>
+        <% if request.headers["Turbo-Frame"] %>
+            <button data-action="modal#close">X</button>
+        <% else %>
+            <%= link_to "Back", :back %>
+        <% end %>
     </div>
 
     <%= render "post", post: @post, user: current_user, show_page: true %>
-
-    <%= link_to "Back", :back, data: { action: "modal#close" } %>
 <% end %>

@@ -1,7 +1,7 @@
 <%= turbo_frame_tag "post-modal" do %>
     <%= turbo_stream_from "posts" %>
 
-    <h1>Post</h1>
+    <h1 class="post__title"><%= @post.creator.profile.first_name %>'s Post</h1>
 
     <%= render "post", post: @post, user: current_user, show_page: true %>
 

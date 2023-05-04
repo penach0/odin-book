@@ -1,7 +1,5 @@
-<div class="dropdown" data-controller="dropdown">
-  <button data-action="dropdown#toggle">...</button>
-  <div class="menu" data-dropdown-target="menu">
-    <div class="post__actions" data-visible-to="<%= post.creator_id %>">
+<%= dropdown(button_text: "...") do %>
+    <div class="post__controls" data-visible-to="<%= post.creator_id %>">
         <%= link_to "Edit", edit_post_path(post) %>
         <% if show_page %>
             <%= button_to "Delete", post, method: :delete,
@@ -19,5 +17,4 @@
                                           } %>
         <% end %>
     </div>
-  </div>
-</div>
+<% end %>

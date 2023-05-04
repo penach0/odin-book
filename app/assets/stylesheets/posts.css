@@ -44,14 +44,16 @@
 
 
 .post__header,
-.post__nav {
+.post__nav,
+.post__counters {
     display: flex;
     justify-content: space-between;
 }
 
-.post__counters {
-    display: flex;
-    justify-content: space-between;
+.post__controls {
+    border: 1px solid black;
+    padding: 15px;
+    background-color: white;
 }
 
 .form-box {

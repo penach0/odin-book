@@ -4,8 +4,11 @@
     <div class="post">
 
         <div class="post__nav">
-            <strong><%= link_to_feed(post.creator) %></strong>
-            <%= render "posts/creator_controls", post: post, show_page: local_assigns[:show_page] %>
+            <strong><%= link_to_feed post.creator %></strong>
+
+            <%= dropdown button_text: "..." do %>
+                <%= render "posts/creator_controls", post: post, show_page: local_assigns[:show_page] %>
+            <% end %>
         </div>
 
         <p><%= post.body %></p>
@@ -18,7 +21,6 @@
                 <span><%= link_to "#{post.comments.size} comments", post, data: { turbo_frame: "post-modal" } unless post.comments.empty? %></span>
             <% end %>
         </div>
-
 
         <div class="user-actions">
             <%= render "shared/like_action", likable: post, user: local_assigns[:user] %>

@@ -2,7 +2,12 @@
 
 <%= turbo_frame_tag post do %>
     <div class="post">
-        <strong><%= link_to_feed(post.creator) %></strong>
+
+        <div class="post__nav">
+            <strong><%= link_to_feed(post.creator) %></strong>
+            <%= render "posts/creator_controls", post: post, show_page: local_assigns[:show_page] %>
+        </div>
+
         <p><%= post.body %></p>
 
         <div class="post__counters">
@@ -14,7 +19,6 @@
             <% end %>
         </div>
 
-        <%= render "posts/creator_controls", post: post, show_page: local_assigns[:show_page] %>
 
         <div class="user-actions">
             <%= render "shared/like_action", likable: post, user: local_assigns[:user] %>

@@ -42,12 +42,14 @@
 }
 
 
-.post__counters {
+
+.post__header,
+.post__nav {
     display: flex;
     justify-content: space-between;
 }
 
-.post__header {
+.post__counters {
     display: flex;
     justify-content: space-between;
 }

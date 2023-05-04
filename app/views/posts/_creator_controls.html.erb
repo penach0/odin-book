@@ -1,6 +1,6 @@
-<div class="dropdown">
+<div class="dropdown" data-controller="dropdown">
     <button>...</button>
-  <div class="post__actions dropdown-menu" data-visible-to="<%= post.creator_id %>">
+  <div class="post__actions dropdown-menu" data-dropdown-target="menu" data-visible-to="<%= post.creator_id %>">
       <%= link_to "Edit", edit_post_path(post) %>
 
       <% if show_page %>

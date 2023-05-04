@@ -1,4 +1,4 @@
-<div class="comment__actions" data-visible-to="<%= comment.commenter_id %>">
+<div class="comment__controls" data-visible-to="<%= comment.commenter_id %>">
     <%= link_to "Edit", edit_comment_path(comment) %>
 
     <%= button_to "Delete", comment, method: :delete, data: { turbo_confirm: "Are you sure?" } %>

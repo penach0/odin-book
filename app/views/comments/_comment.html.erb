@@ -5,7 +5,10 @@
     <strong><%= link_to_feed(comment.commenter) %></strong>
     <p><%= comment.body %></p>
   
-    <%= render "comments/creator_controls", comment: comment %>
+    <%= dropdown button_text: "..." do %>
+      <%= render "comments/creator_controls", comment: comment %>
+    <% end %>
+
   </div>
 
   <%= turbo_frame_tag nested_dom_id(comment, "likes_counter") do %>

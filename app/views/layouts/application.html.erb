@@ -31,8 +31,8 @@
     <dialog class="modal" 
             data-controller="modal" 
             data-modal-target="modal"  
-            data-action="turbo:frame-load->modal#open click->modal#lightDismiss">
-        <%= turbo_frame_tag "post-modal", data: { modal_target: "modalContent" } %>
+            data-action="turbo:frame-load->modal#open click->modal#lightDismiss keydown.esc->modal#close">
+        <%= turbo_frame_tag "post-modal" %>
     </dialog>
 
     <%= yield %>

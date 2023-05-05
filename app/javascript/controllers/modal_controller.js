@@ -4,6 +4,10 @@ export default class extends Controller {
     static targets = [ "modal" ]
 
     open() {
+        if(this.modalTarget.hasAttribute("open")) {
+            return
+        }
+
         this.modalTarget.showModal();
         document.body.style.overflow = "hidden"
     }

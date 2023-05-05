@@ -11,7 +11,7 @@ module ApplicationHelper
 
   def dropdown(button_text:, &block)
     content_tag(:div, class: "dropdown", data: { controller: "dropdown"}) do
-      concat content_tag(:button, button_text, data: { action: "dropdown#toggle"})
+      concat content_tag(:button, button_text, data: { action: "dropdown#toggle click@window->dropdown#hide"})
       concat content_tag(:div, capture(&block), class: "menu", data: { dropdown_target: "menu" })
     end
   end

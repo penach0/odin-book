@@ -10,4 +10,10 @@ export default class extends Controller {
       this.menuTarget.style.display = "none"
     }
   }
+
+  hide(e) {
+    if(!this.element.contains(e.target)) {
+      this.menuTarget.style.display = "none"
+    }
+  }
 }

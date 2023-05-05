@@ -9,10 +9,10 @@ module ApplicationHelper
             data: { turbo: false }
   end
 
-  def dropdown(button_text:, &block)
+  def dropdown(button_text:, menu_position:, &block)
     content_tag(:div, class: "dropdown", data: { controller: "dropdown"}) do
       concat content_tag(:button, button_text, data: { action: "dropdown#toggle click@window->dropdown#lightDismiss"})
-      concat content_tag(:div, capture(&block), class: "menu", data: { dropdown_target: "menu" })
+      concat content_tag(:div, capture(&block), class: ["menu", "menu--#{menu_position}"], data: { dropdown_target: "menu" })
     end
   end
 end

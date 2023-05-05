@@ -6,7 +6,7 @@
         <div class="post__nav">
             <strong><%= link_to_feed post.creator %></strong>
 
-            <%= dropdown button_text: "..." do %>
+            <%= dropdown button_text: "...", menu_position: "left" do %>
                 <%= render "posts/creator_controls", post: post, show_page: local_assigns[:show_page] %>
             <% end %>
         </div>

@@ -7,7 +7,7 @@
         <p><%= comment.body %></p>
       </div>
     
-      <%= dropdown button_text: "..." do %>
+      <%= dropdown button_text: "...", menu_position: "center" do %>
         <%= render "comments/creator_controls", comment: comment %>
       <% end %>
   </div>

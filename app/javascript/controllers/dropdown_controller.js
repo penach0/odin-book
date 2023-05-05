@@ -4,16 +4,24 @@ export default class extends Controller {
   static targets = [ "menu" ]
 
   toggle() {
-    if(getComputedStyle(this.menuTarget).display === "none") {
-      this.menuTarget.style.display = "block" 
-    } else {
-      this.menuTarget.style.display = "none"
+      this.isHidden() ? this.show() :  this.hide()
+  }
+
+  lightDismiss(e) {
+    if(!this.element.contains(e.target)) {
+      this.hide()
     }
   }
 
-  hide(e) {
-    if(!this.element.contains(e.target)) {
-      this.menuTarget.style.display = "none"
-    }
+  isHidden() {
+    return getComputedStyle(this.menuTarget).display === "none"
+  }
+
+  show() {
+    this.menuTarget.style.display = "block"
+  }
+
+  hide() {
+    this.menuTarget.style.display = "none"
   }
 }

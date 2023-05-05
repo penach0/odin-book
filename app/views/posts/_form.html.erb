@@ -2,7 +2,10 @@
     <%= render "shared/form_errors", model: post %>
 
     <div class="form-box">
-        <%= f.text_area :body, autocomplete: "off", placeholder: "What's on your mind?" %>
+        <%= f.text_area :body,
+        autocomplete: "off",
+        placeholder: "What's on your mind?",
+        data: { controller: "textarea-autogrow", action: "textarea-autogrow#autogrow" } %>
         <%= f.submit %>
     </div>
 <% end %>

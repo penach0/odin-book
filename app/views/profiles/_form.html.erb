@@ -11,7 +11,7 @@
     <%= f.date_field :date_of_birth %>
 
     <%= f.label :bio %>
-    <%= f.text_area :bio %>
+    <%= f.text_area :bio, data: { controller: "textarea-autogrow", action: "textarea-autogrow#autogrow" } %>
 
     <%= f.submit %>
 <% end %>

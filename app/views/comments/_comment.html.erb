@@ -21,17 +21,17 @@
     <%= link_to "Reply", new_comment_comment_path(comment), data: { turbo_frame: nested_dom_id(comment, "new_comment") } %>
   </div>
 
-  <% if local_assigns[:show_page] %>
-    <ul>
-      <%= turbo_frame_tag nested_dom_id(comment, "comments") do %>
-        <%= render comment.comments, show_page: local_assigns[:show_page] %>
+    
+  <ul>
+    <%= turbo_frame_tag nested_dom_id(comment, "comments") do %>
+      <% if local_assigns[:show_page] %>
+          <%= render comment.comments, show_page: local_assigns[:show_page] %>
+      <% else %>
+        <%= link_to "See more replies",
+              polymorphic_path(comment.commentable),
+              data: { turbo_frame: "post-modal" } if comment.comments.size > 0 %>
       <% end %>
-      <%= turbo_frame_tag nested_dom_id(comment, "new_comment") %>
-    </ul>
-  <% else %>
-    <%= link_to "See more replies",
-                polymorphic_path(comment.commentable),
-                data: { turbo_frame: "post-modal" } if comment.comments.size > 0 %>
-      <%= turbo_frame_tag nested_dom_id(comment, "new_comment") %>
-  <% end %>
+    <% end %>
+    <%= turbo_frame_tag nested_dom_id(comment, "new_comment") %>
+  </ul>
 <% end %>
